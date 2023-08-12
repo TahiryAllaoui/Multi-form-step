@@ -1,10 +1,11 @@
 import '../style/App.scss'
+import SideBar from './SideBar'
 
 function App() {
 
   return (
     <div className='app'>
-      <h1>Test</h1>
+      <SideBar />
     </div>
   )
 }
