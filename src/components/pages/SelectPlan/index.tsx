@@ -44,7 +44,7 @@ const SelectPlan = () => {
                 </div>
             </div>
             <div className="form-link">
-                <Link to='/select-plan' className='preview-Link'>
+                <Link to='/' className='preview-Link'>
                     Go back
                 </Link>
                 <Link to='/add-on' className='next-Link'>
