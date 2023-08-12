@@ -43,6 +43,12 @@ form {
                     border: 1px solid $Cool-gray;
                     border-radius: 0.5rem;
                     height: 2.5rem;
+                    outline: none;
+
+                    &:focus {
+                        outline: none;
+                        border: 1px solid $Marine-blue;
+                    }
                 }
             }
         }

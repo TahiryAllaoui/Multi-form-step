@@ -120,6 +120,7 @@ form {
                 border: none;
                 color: $White;
                 transition: background-color 200ms linear;
+                cursor: pointer;
 
                 &:hover {
                     background-color: $Purplish-blue;
