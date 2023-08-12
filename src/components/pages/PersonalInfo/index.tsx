@@ -30,7 +30,7 @@ const PersonalInfo = () => {
 
                 </Link>
                 <Link to='/select-plan' className='next-Link'>
-                    Next Step
+                    <button>Next step</button>
                 </Link>
             </div>
         </form>
