@@ -14,7 +14,7 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
-        gap: 1rem;
+        gap: 2.8rem;
         width: 100%;
 
         h2 {
@@ -61,6 +61,11 @@
                         padding: 0;
                         margin: 0;
                     }
+
+                    .month-bonus {
+                        color: $Purplish-blue;
+                        display: block;
+                    }
                 }
             }
 
@@ -98,6 +103,7 @@
     }
 
     .form-link {
+        margin-top: 3rem;
         font-size: small;
         display: flex;
         align-items: center;

@@ -18,6 +18,7 @@ const SelectPlan = () => {
                         <div>
                             <h3>Arcade</h3>
                             <p>$9/mo</p>
+                            <p className="month-bonus">2 months free</p>
                         </div>
                     </div>
                     <div className="choice">
@@ -25,6 +26,7 @@ const SelectPlan = () => {
                         <div>
                             <h3>Advanced</h3>
                             <p>$12/mo</p>
+                            <p className="month-bonus">2 months free</p>
                         </div>
                     </div>
                     <div className="choice">
@@ -32,6 +34,7 @@ const SelectPlan = () => {
                         <div>
                             <h3>Pro</h3>
                             <p>$15/mo</p>
+                            <p className="month-bonus">2 months free</p>
                         </div>
                     </div>
                 </div>
