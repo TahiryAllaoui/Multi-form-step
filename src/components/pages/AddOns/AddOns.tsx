@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../AddOns/style.scss'
+import '../AddOns/style-addOns.scss'
 
 const AddOns = () => {
     return (
@@ -33,7 +33,10 @@ const AddOns = () => {
                     <div className="form-item">
                         <div className="tag">
                             <input type="checkbox" required name='custom-profile' />
-                            <label>Custom theme on your profile</label>
+                            <label>
+                                <h3>Customizable profile</h3>
+                                <p>Custom theme on your profile</p>
+                            </label>
                         </div>
                         <p>+$2/mo</p>
                     </div>

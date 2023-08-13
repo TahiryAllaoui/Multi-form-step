@@ -2,7 +2,7 @@ import arcade from '../../../assets/images/icon-arcade.svg'
 import advanced from '../../../assets/images/icon-advanced.svg'
 import pro from '../../../assets/images/icon-pro.svg'
 import { Link } from 'react-router-dom';
-import '../SelectPlan/style.scss'
+import '../SelectPlan/style-plan.scss'
 
 const SelectPlan = () => {
     return (

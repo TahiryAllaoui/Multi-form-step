@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../PersonalInfo/style.scss'
+import '../PersonalInfo/style-info.scss'
 
 const PersonalInfo = () => {
 

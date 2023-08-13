@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import PersonalInfo from './pages/PersonalInfo';
+import PersonalInfo from './pages/PersonalInfo/PersonalInfo';
 import '../style/Form.scss';
-import SelectPlan from './pages/SelectPlan';
-import AddOns from './pages/AddOns';
+import SelectPlan from './pages/SelectPlan/SelectPlan';
+import AddOns from './pages/AddOns/AddOns';
 
 
 const Form = () => {
