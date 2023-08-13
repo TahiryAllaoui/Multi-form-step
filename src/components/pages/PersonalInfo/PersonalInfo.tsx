@@ -1,7 +1,21 @@
 import { Link } from 'react-router-dom';
 import './style.scss'
+import { useState } from 'react';
+
 
 const PersonalInfo = () => {
+
+    const [identity, setIdentity] = useState<Identity>({
+        name: 'John Lavine',
+        mail: 'johnlavine@gmail.com',
+        number: '+261 32 656 12'
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setIdentity({ ...identity, name: e.currentTarget.value });
+        console.log(identity);
+    };
+
 
     return (
         <form className='step-1'>
@@ -13,7 +27,7 @@ const PersonalInfo = () => {
                 <div className="form-elements">
                     <div className="form-item">
                         <label>Name</label>
-                        <input type="text" required placeholder='e.g. Stephen King' />
+                        <input type="text" required placeholder='e.g. Stephen King' onChange={handleChange} />
                     </div>
                     <div className="form-item">
                         <label>Email Address</label>
