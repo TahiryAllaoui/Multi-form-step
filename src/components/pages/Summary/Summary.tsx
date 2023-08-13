@@ -13,17 +13,18 @@ const Summary = () => {
                     <div className="plan">
                         <div>
                             <h3>Arcade (Monthly)</h3>
-                            <Link to='/select-plan'>Change</Link>
+                            <Link to='/select-plan' className='links'>Change</Link>
                         </div>
                         <p>$9/mo</p>
                     </div>
+                    <div className="line"></div>
                     <div className="add-ons">
                         <div className="add-ons-item">
-                            <h3>Advanced</h3>
+                            <h3>Online service</h3>
                             <p>+$1/mo</p>
                         </div>
                         <div className="add-ons-item">
-                            <h3>Pro</h3>
+                            <h3>Larger storage</h3>
                             <p>+$2/mo</p>
                         </div>
                     </div>

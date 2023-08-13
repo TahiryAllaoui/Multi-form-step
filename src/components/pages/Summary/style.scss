@@ -6,6 +6,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    padding-top: 3rem;
+    border: 1px solid black;
 
     .container {
         height: 75%;
@@ -20,5 +22,120 @@
         h2 {
             color: $Marine-blue;
         }
+
+        .step-items {
+            width: 100%;
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            background-color: $Magnolia;
+            border-radius: 0.5rem;
+
+            .plan {
+                width: 100%;
+                height: 50%;
+                display: flex;
+                justify-content: space-around;
+                gap: 8rem;
+                align-items: center;
+                color: $Marine-blue;
+
+                h3 {
+                    font-family: 'Ubuntu-Medium';
+                    font-weight: lighter;
+                    font-size: 100%;
+                    margin: 0 0 0.5rem 0;
+                }
+
+                p {
+                    font-weight: bold;
+                    font-family: 'Ubuntu-Medium';
+                }
+
+                .links {
+                    color: $Cool-gray;
+                    font-size: 90%;
+                }
+            }
+
+            .line {
+                margin-left: 1.3rem;
+                width: 90%;
+                border-top: 1px solid $Light-gray;
+            }
+
+            .add-ons {
+                width: 100%;
+                height: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 1rem;
+
+                .add-ons-item {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    gap: 12.5rem;
+
+                    h3 {
+                        font-family: 'Ubuntu-Medium';
+                        font-weight: lighter;
+                        font-size: small;
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    p {
+                        font-family: 'Ubuntu-Medium';
+                        font-size: small;
+                        padding-right: 0.7rem;
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+            }
+        }
     }
+
+    .form-link {
+        font-size: small;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        .preview-Link {
+            text-decoration: none;
+            color: $Cool-gray;
+            font-family: 'Ubuntu-Bold';
+            font-weight: lighter;
+        }
+
+        .next-Link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 25%;
+            text-decoration: none;
+
+            button {
+                width: 100%;
+                height: 3rem;
+                background-color: $Marine-blue;
+                border-radius: 0.6rem;
+                border: none;
+                color: $White;
+                transition: background-color 200ms linear;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: $Purplish-blue;
+                }
+            }
+
+        }
+
+    }
+
 }
