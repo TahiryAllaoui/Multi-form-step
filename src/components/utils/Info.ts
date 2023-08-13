@@ -1,11 +1,15 @@
-import { useContext, createContext } from "react";
+import { createContext } from "react";
 
-export interface IdentityType {
+interface IdentityType {
     name: string;
     mail: string;
     number: string;
+    setName: (s: string) => void;
+    setMail: (s: string) => void;
+    setNumber: (s: string) => void;
 }
 
 const Identity = createContext<IdentityType | null>(null);
 
-export default Identity;
+export { Identity };
+export type { IdentityType }
