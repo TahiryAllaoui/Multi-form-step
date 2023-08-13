@@ -1,5 +1,52 @@
 @import'../../../style/color.scss';
 
+@keyframes shake {
+    0% {
+        transform: translateX(0)
+    }
+
+    10% {
+        transform: translateX(10px)
+    }
+
+    20% {
+        transform: translateX(-10px)
+    }
+
+    30% {
+        transform: translateX(10px)
+    }
+
+    40% {
+        transform: translateX(-10px)
+    }
+
+    50% {
+        transform: translateX(10px)
+    }
+
+    60% {
+        transform: translateX(-10px)
+    }
+
+    70% {
+        transform: translateX(10px)
+    }
+
+    80% {
+        transform: translateX(-10px)
+    }
+
+    90% {
+        transform: translateX(10px)
+    }
+
+    100% {
+        transform: translateX(0)
+    }
+
+}
+
 .step-1 {
     width: 50%;
     display: flex;
@@ -50,6 +97,16 @@
                         border: 1px solid $Marine-blue;
                     }
                 }
+
+                .vibrate {
+                    &:focus {
+                        outline: none;
+                        border: 1px solid red;
+                    }
+
+                    border: 1px solid red;
+                    animation: shake 400ms;
+                }
             }
         }
 
@@ -86,6 +143,12 @@
 
                 &:hover {
                     background-color: $Purplish-blue;
+                }
+
+                &:disabled {
+                    background-color: $White;
+                    border: 2px solid $Cool-gray;
+                    color: $Cool-gray;
                 }
             }
 
