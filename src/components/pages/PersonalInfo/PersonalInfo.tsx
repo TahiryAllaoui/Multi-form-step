@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import '../PersonalInfo/style-info.scss'
+import './style.scss'
 
 const PersonalInfo = () => {
 
     return (
-        <form>
-            <div className="container">
+        <form className='step-1'>
+            <div className="container" >
                 <div className="step-label">
                     <h2>Personal info</h2>
                     <p>Please provide your name, email address, and phone number.</p>

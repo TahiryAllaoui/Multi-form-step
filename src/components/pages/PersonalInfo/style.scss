@@ -1,6 +1,6 @@
 @import'../../../style/color.scss';
 
-form {
+.step-1 {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -29,9 +29,9 @@ form {
             .form-item {
                 width: 100%;
                 display: flex;
+
                 flex-direction: column;
                 gap: 0.5rem;
-
 
                 label {
                     color: $Marine-blue;

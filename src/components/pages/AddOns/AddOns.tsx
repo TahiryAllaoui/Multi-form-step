@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import '../AddOns/style-addOns.scss'
+import './style.scss'
 
 const AddOns = () => {
     return (
-        <form>
+        <form className='step-3'>
             <div className="container">
                 <div className="step-label">
                     <h2>Pick add-ons</h2>
@@ -12,8 +12,8 @@ const AddOns = () => {
                 <div className="form-elements">
                     <div className="form-item">
                         <div className="tag">
-                            <input type="checkbox" required name='online-service' />
-                            <label>
+                            <input type="checkbox" required name='online-service' id='online' />
+                            <label htmlFor='online'>
                                 <h3>Online ervice</h3>
                                 <p>Access to multiplayer games</p>
                             </label>
@@ -22,8 +22,8 @@ const AddOns = () => {
                     </div>
                     <div className="form-item">
                         <div className="tag">
-                            <input type="checkbox" required name='storage' />
-                            <label>
+                            <input type="checkbox" required name='storage' id='storage' />
+                            <label htmlFor='storage'>
                                 <h3>Larger storage</h3>
                                 <p>Extra 1TB of cloud save</p>
                             </label>
@@ -32,8 +32,8 @@ const AddOns = () => {
                     </div>
                     <div className="form-item">
                         <div className="tag">
-                            <input type="checkbox" required name='custom-profile' />
-                            <label>
+                            <input type="checkbox" required name='custom-profile' id='profile' />
+                            <label htmlFor='profile'>
                                 <h3>Customizable profile</h3>
                                 <p>Custom theme on your profile</p>
                             </label>
