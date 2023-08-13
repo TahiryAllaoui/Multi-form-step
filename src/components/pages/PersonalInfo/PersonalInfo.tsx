@@ -5,10 +5,23 @@ import { Identity } from '../../utils/Info';
 
 
 const PersonalInfo = () => {
+    const specialChar: RegExp = /[\`1234567890=\/\*\+\{\}\~\!\@\#\$\%\|\^\&\*\(\)\=\[\]\:\'\"\;\,\?\>\<]/;
+
     const context = useContext(Identity);
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
         context?.setName(e.currentTarget.value);
     };
+
+    const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
+        context?.setMail(e.currentTarget.value);
+    };
+
+    const handleNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+        context?.setNumber(e.currentTarget.value);
+    };
+
+
 
 
     return (
@@ -21,15 +34,15 @@ const PersonalInfo = () => {
                 <div className="form-elements">
                     <div className="form-item">
                         <label>Name</label>
-                        <input type="text" required placeholder='e.g. Stephen King' onChange={handleChange} value={context?.name} />
+                        <input type="text" required placeholder='e.g. Stephen King' onChange={handleName} value={context?.name} />
                     </div>
                     <div className="form-item">
                         <label>Email Address</label>
-                        <input type="email" required placeholder='e.g. stephenking@gmail.com' />
+                        <input type="email" required placeholder='e.g. stephenking@gmail.com' onChange={handleMail} value={context?.mail} />
                     </div>
                     <div className="form-item">
                         <label>Phone Number</label>
-                        <input type="text" required placeholder='e.g. +1 234 567 853' />
+                        <input type="text" required placeholder='e.g. +1 234 567 853' onChange={handleNumber} value={context?.number} />
                     </div>
                 </div>
             </div>
