@@ -1,0 +1,25 @@
+@import '../../../style/color.scss';
+
+.complet {
+    text-align: center;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h2 {
+        color: $Marine-blue;
+    }
+
+    p {
+        color: $Cool-gray;
+        width: 75%;
+
+        a {
+            color: $Cool-gray;
+            text-decoration: none;
+        }
+
+    }
+}
