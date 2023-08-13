@@ -1,19 +1,13 @@
 import { Link } from 'react-router-dom';
 import './style.scss'
-import { useState } from 'react';
+import { useContext } from 'react';
+import { Identity } from '../../utils/Info';
 
 
 const PersonalInfo = () => {
-
-    const [identity, setIdentity] = useState<Identity>({
-        name: 'John Lavine',
-        mail: 'johnlavine@gmail.com',
-        number: '+261 32 656 12'
-    });
-
+    const context = useContext(Identity);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setIdentity({ ...identity, name: e.currentTarget.value });
-        console.log(identity);
+        context?.setName(e.currentTarget.value);
     };
 
 
@@ -27,7 +21,7 @@ const PersonalInfo = () => {
                 <div className="form-elements">
                     <div className="form-item">
                         <label>Name</label>
-                        <input type="text" required placeholder='e.g. Stephen King' onChange={handleChange} />
+                        <input type="text" required placeholder='e.g. Stephen King' onChange={handleChange} value={context?.name} />
                     </div>
                     <div className="form-item">
                         <label>Email Address</label>
