@@ -1,8 +1,11 @@
+import { useContext, useEffect } from 'react';
 import done from '../../../assets/images/icon-thank-you.svg'
+import { Step } from '../../utils/StepChange';
 
 import './style.scss'
 
 const Completed = () => {
+
     return (
         <div className="complet">
             <img src={done} alt="" />

@@ -1,7 +1,14 @@
 import { Link } from 'react-router-dom';
 import './style.scss'
+import { useContext, useEffect } from 'react';
+import { Step } from '../../utils/StepChange';
 
 const AddOns = () => {
+    const stepContext = useContext(Step);
+
+    useEffect(() => {
+        stepContext!.setStepId(2)
+    }, [])
     return (
         <form className='step-3'>
             <div className="container">

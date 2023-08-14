@@ -14,7 +14,10 @@
         gap: 1rem;
         width: 75%;
 
-        .step-id {
+        .step-p-1,
+        .step-p-2,
+        .step-p-3,
+        .step-p-4 {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,6 +26,11 @@
             color: white;
             border-radius: 100%;
             border: 1px solid white;
+        }
+
+        .step-color {
+            transition: all 300ms linear;
+            background-color: $Light-blue;
         }
 
         div {

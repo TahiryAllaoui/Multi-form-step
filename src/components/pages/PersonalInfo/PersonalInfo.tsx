@@ -2,19 +2,15 @@ import { Link } from 'react-router-dom';
 import './style.scss'
 import { useContext, useEffect, useState } from 'react';
 import { Identity } from '../../utils/Info';
-
-interface etat {
-    value: string;
-    error: boolean;
-}
-
+import { Step } from '../../utils/StepChange';
 
 const PersonalInfo = () => {
     const specialChar: RegExp = /[\`1234567890=\/\*\+\{\}\~\!\@\#\$\%\|\^\&\*\(\)\=\[\]\:\'\"\;\,\?\>\<]/;
-    const specialCharForNumber: RegExp = /[\`qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM=\/\*\+\{\}\~\!\@\#\$\%\|\^\&\*\(\)\=\[\]\:\'\"\;\,\?\>\<]/;
+    const specialCharForNumber: RegExp = /[\`qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM=\/\*\{\}\~\!\@\#\$\%\|\^\&\*\(\)\=\[\]\:\'\"\;\,\?\>\<]/;
     const specialCharForMail: RegExp = /[\`=\/\*\+\{\}\~\!\\\#\$\%\|\^\&\*\(\)\=\[\]\:\'\"\;\,\?\>\<]/;
 
     const context = useContext(Identity);
+    const stepContext = useContext(Step);
 
     //Handling Input Change
     const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,24 +22,26 @@ const PersonalInfo = () => {
     };
 
     const handleNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-        context!.setNumber(e.currentTarget.value);
+        let tmp: string = e.currentTarget.value;
+        switch (tmp.length) {
+            case 2:
+                tmp = tmp + ' ';
+                break;
+            case 6:
+                tmp = tmp + ' ';
+                break;
+            case 10:
+                tmp = tmp + ' ';
+                break;
+            case 14:
+                tmp = tmp + ' ';
+                break;
+        }
+        context!.setNumber(tmp);
     };
 
-    //handling Input error
-    // const [nameError, setNameError] = useState<etat>({
-    //     value: context!.name,
-    //     error: true
-    // })
-    // const [mailError, setMailError] = useState<etat>({
-    //     value: context!.mail,
-    //     error: true
-    // })
-    // const [numberError, setNUmberError] = useState<etat>({
-    //     value: context!.number,
-    //     error: true
-    // })
+    //For handling Button: enabled or disabled
     const [buttonIsDisabled, setButtonIsDisabled] = useState(true);
-
     useEffect(() => {
         let buttonState: boolean = false;
 
@@ -90,12 +88,19 @@ const PersonalInfo = () => {
             let myInput = document.querySelector('.input-3');
             myInput!.classList.remove('vibrate');
         }
+
+        //For number
+        if (context!.number.length < 12) {
+            buttonState = true;
+        }
         setButtonIsDisabled(buttonState);
     }, [context!.name, context!.mail, context!.number])
 
 
-
-
+    //For sidebar id
+    useEffect(() => {
+        stepContext!.setStepId(0)
+    }, [])
 
     return (
         <form className='step-1'>
@@ -107,15 +112,35 @@ const PersonalInfo = () => {
                 <div className="form-elements">
                     <div className="form-item">
                         <label>Name</label>
-                        <input type="text" required placeholder='e.g. Stephen King' onChange={handleName} value={context?.name} className='input-1' />
+                        <input
+                            type="text"
+                            required
+                            placeholder='e.g. Stephen King'
+                            onChange={handleName}
+                            value={context!.name}
+                            className='input-1' />
                     </div>
                     <div className="form-item">
                         <label>Email Address</label>
-                        <input type="email" required placeholder='e.g. stephenking@gmail.com' onChange={handleMail} value={context?.mail} className='input-2' />
+                        <input
+                            type="email"
+                            required
+                            placeholder='e.g. stephenking@gmail.com'
+                            onChange={handleMail}
+                            value={context!.mail}
+                            className='input-2' />
                     </div>
                     <div className="form-item">
                         <label>Phone Number</label>
-                        <input type="text" required placeholder='e.g. +1 234 567 853' onChange={handleNumber} value={context?.number} className='input-3' />
+                        <input
+                            type="text"
+                            required
+                            placeholder='e.g. +1 234 567 853'
+                            onChange={handleNumber}
+                            value={context!.number}
+                            className='input-3'
+                            minLength={14}
+                            maxLength={14} />
                     </div>
                 </div>
             </div>
@@ -130,5 +155,6 @@ const PersonalInfo = () => {
         </form>
     );
 };
+
 
 export default PersonalInfo;

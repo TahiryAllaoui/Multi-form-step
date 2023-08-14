@@ -8,7 +8,6 @@ import Summary from './pages/Summary/Summary';
 import Completed from './pages/Completed/Completed';
 import { Identity, IdentityType } from './utils/Info';
 
-
 const Form = () => {
     const [name, setName] = useState('');
     const [mail, setMail] = useState('');
@@ -22,6 +21,8 @@ const Form = () => {
         setMail: setMail,
         setNumber: setNumber
     }
+
+
 
     return (
         <BrowserRouter>

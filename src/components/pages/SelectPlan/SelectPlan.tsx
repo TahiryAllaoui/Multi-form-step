@@ -3,8 +3,17 @@ import advanced from '../../../assets/images/icon-advanced.svg'
 import pro from '../../../assets/images/icon-pro.svg'
 import { Link } from 'react-router-dom';
 import './style.scss'
+import { useContext, useEffect } from 'react';
+import { Step } from '../../utils/StepChange';
 
 const SelectPlan = () => {
+
+    const stepContext = useContext(Step);
+
+    useEffect(() => {
+        stepContext!.setStepId(1)
+    }, [])
+
     return (
         <form className='step-2'>
             <div className="container">
