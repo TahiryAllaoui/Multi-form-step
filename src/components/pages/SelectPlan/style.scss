@@ -64,6 +64,10 @@
 
                     .month-bonus {
                         color: $Purplish-blue;
+                        display: none;
+                    }
+
+                    .month-bonus-show {
                         display: block;
                     }
                 }
@@ -80,23 +84,33 @@
             background-color: $Alabaster;
             font-size: small;
 
+            p {
+                cursor: pointer;
+            }
+
             .switch-container {
                 padding: 0 2px;
                 width: 1.8rem;
-                height: 40%;
+                height: 41%;
                 border-radius: 1.5rem;
                 background-color: $Marine-blue;
                 margin: 0 1rem;
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
-
+                cursor: pointer;
 
                 .switch {
                     border-radius: 100%;
                     width: 0.8rem;
                     height: 0.8rem;
                     background-color: $White;
+                    transition: all 200ms linear;
+                }
+
+                .switch-translate {
+                    transition: all 200ms linear;
+                    transform: translateX(15px);
                 }
             }
         }

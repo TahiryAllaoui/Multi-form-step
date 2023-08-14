@@ -14,16 +14,8 @@ const SideBar = () => {
     const stepContext = useContext(Step);
 
     useEffect(() => {
-        for (let i = 0; i < stepTab.length; i++) {
-            if (i == stepContext!.stepId) {
-                stepTab[stepContext!.stepId].current!.classList.add('step-color');
-                console.log('added ' + stepContext!.stepId)
-            }
-            else {
-                stepTab[i].current!.classList.remove('step-color');
-                console.log('removed ' + stepContext!.stepId)
-            }
-        }
+        for (let i = 0; i < stepTab.length; i++)
+            (i == stepContext!.stepId) ? stepTab[stepContext!.stepId].current!.classList.add('step-color') : stepTab[i].current!.classList.remove('step-color');
     }, [stepContext!.stepId])
 
 

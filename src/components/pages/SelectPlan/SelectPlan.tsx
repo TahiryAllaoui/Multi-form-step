@@ -3,16 +3,32 @@ import advanced from '../../../assets/images/icon-advanced.svg'
 import pro from '../../../assets/images/icon-pro.svg'
 import { Link } from 'react-router-dom';
 import './style.scss'
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { Step } from '../../utils/StepChange';
 
 const SelectPlan = () => {
 
-    const stepContext = useContext(Step);
+    //Monthly or yearly Bill
+    const swithButton = useRef<HTMLDivElement>(null);
+    const bonus1 = useRef<HTMLParagraphElement>(null);
+    const bonus2 = useRef<HTMLParagraphElement>(null);
+    const bonus3 = useRef<HTMLParagraphElement>(null);
+    const handleClick = () => {
+        //DOM styling
+        bonus1.current!.classList.toggle('month-bonus-show');
+        bonus2.current!.classList.toggle('month-bonus-show');
+        bonus3.current!.classList.toggle('month-bonus-show');
+        swithButton.current!.classList.toggle('switch-translate');
 
+        //Datas
+
+    };
+
+    //For sidebar scrolling step
+    const stepContext = useContext(Step);
     useEffect(() => {
-        stepContext!.setStepId(1)
-    }, [])
+        stepContext!.setStepId(1);
+    }, []);
 
     return (
         <form className='step-2'>
@@ -27,7 +43,7 @@ const SelectPlan = () => {
                         <div>
                             <h3>Arcade</h3>
                             <p>$9/mo</p>
-                            <p className="month-bonus">2 months free</p>
+                            <p className="month-bonus" ref={bonus1}>2 months free</p>
                         </div>
                     </div>
                     <div className="choice">
@@ -35,7 +51,7 @@ const SelectPlan = () => {
                         <div>
                             <h3>Advanced</h3>
                             <p>$12/mo</p>
-                            <p className="month-bonus">2 months free</p>
+                            <p className="month-bonus" ref={bonus2}>2 months free</p>
                         </div>
                     </div>
                     <div className="choice">
@@ -43,14 +59,14 @@ const SelectPlan = () => {
                         <div>
                             <h3>Pro</h3>
                             <p>$15/mo</p>
-                            <p className="month-bonus">2 months free</p>
+                            <p className="month-bonus" ref={bonus3}>2 months free</p>
                         </div>
                     </div>
                 </div>
                 <div className="bill">
                     <p>Monthly</p>
-                    <div className="switch-container">
-                        <div className="switch"></div>
+                    <div className="switch-container" onClick={handleClick}>
+                        <div className="switch" ref={swithButton}></div>
                     </div>
                     <p>Yearly</p>
                 </div>
