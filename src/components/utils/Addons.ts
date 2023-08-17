@@ -3,23 +3,19 @@ interface add {
     title: string;
     feeMonth: number;
     feeYear: number;
-    yearPay: boolean;
+    checked: boolean
     div: HTMLDivElement;
 }
 
 interface AddType {
     pay: number;
-    bill: boolean;
-    totalBill: number;
-    setBill: (m: boolean) => void;
-    setTotalBill: (s: number) => void;
     setPay: (s: number) => void;
+    totalBill: number;
+    setTotalBill: (s: number) => void;
     button: boolean;
     setButton: (m: boolean) => void;
-    clicked: boolean;
-    setClicked: (m: boolean) => void;
-    plan: add;
-    setPlan: (m: add) => void;
+    adds: add;
+    setAdd: (p: add) => void;
 
 }
 

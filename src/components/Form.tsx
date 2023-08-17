@@ -8,11 +8,20 @@ import Summary from './pages/Summary/Summary';
 import Completed from './pages/Completed/Completed';
 import { Identity, IdentityType } from './utils/Info';
 import { Plan, PlanType } from './utils/Plan';
+import { AddType, Add } from './utils/Addons';
 
 interface plan {
     title: string;
     feeMonth: number;
     feeYear: number;
+    div: HTMLDivElement;
+}
+
+interface add {
+    title: string;
+    feeMonth: number;
+    feeYear: number;
+    checked: boolean;
     div: HTMLDivElement;
 }
 
@@ -39,35 +48,11 @@ const Form = () => {
     const [total, setTotal] = useState(0);
     const [buttonIsDisabled, setButtonIsDisabled] = useState(true);
     const [planState, setPlanState] = useState<plan>({
-        title: 'Arcade',
-        feeMonth: 9,
-        feeYear: 90,
+        title: '',
+        feeMonth: 0,
+        feeYear: 0,
         div: div
     });
-    // const plan: plan[] = [{
-    // title: 'Arcade',
-    // feeMonth: 9,
-    // feeYear: 90,
-    // yearPay: false,
-    // planId: 0,
-    // div: div
-    // },
-    // {
-    //     title: 'Advanced',
-    //     feeMonth: 12,
-    //     feeYear: 120,
-    //     yearPay: false,
-    //     planId: 1,
-    //     div: div
-    // },
-    // {
-    //     title: 'Arcade',
-    //     feeMonth: 15,
-    //     feeYear: 150,
-    //     yearPay: false,
-    //     planId: 2,
-    //     div: div
-    // }];
 
     let s: PlanType = {
         pay: pay,
@@ -84,17 +69,42 @@ const Form = () => {
         setPlan: setPlanState
     }
 
+    //Add-ons
+    const [payForAdd, setPayForAdd] = useState(0);
+    const [buttonIsDisabledForAdd, setButtonIsDisabledForAdd] = useState(true);
+    const [addState, setAddState] = useState<add>({
+        title: '',
+        feeMonth: 0,
+        feeYear: 0,
+        div: div,
+        checked: false
+    });
+
+    let r: AddType = {
+        pay: payForAdd,
+        setPay: setPayForAdd,
+        totalBill: total,
+        setTotalBill: setTotal,
+        button: buttonIsDisabledForAdd,
+        setButton: setButtonIsDisabledForAdd,
+        adds: addState,
+        setAdd: setAddState
+    }
+
+
     return (
         <BrowserRouter>
             <Identity.Provider value={t}>
                 <Plan.Provider value={s}>
-                    <Routes>
-                        <Route path='/' element={<PersonalInfo />} />
-                        <Route path='/select-plan' element={<SelectPlan />} />
-                        <Route path='/add-ons' element={<AddOns />} />
-                        <Route path='/summary' element={<Summary />} />
-                        <Route path='/completed' element={<Completed />} />
-                    </Routes>
+                    <Add.Provider value={r}>
+                        <Routes>
+                            <Route path='/' element={<PersonalInfo />} />
+                            <Route path='/select-plan' element={<SelectPlan />} />
+                            <Route path='/add-ons' element={<AddOns />} />
+                            <Route path='/summary' element={<Summary />} />
+                            <Route path='/completed' element={<Completed />} />
+                        </Routes>
+                    </Add.Provider>
                 </Plan.Provider>
             </Identity.Provider>
         </BrowserRouter>
