@@ -4,13 +4,12 @@ import { Step } from './utils/StepChange';
 
 const SideBar = () => {
 
+    //For sidebar step scroll
     const step1 = useRef<HTMLParagraphElement>(null);
     const step2 = useRef<HTMLParagraphElement>(null);
     const step3 = useRef<HTMLParagraphElement>(null);
     const step4 = useRef<HTMLParagraphElement>(null);
-
     const stepTab: React.RefObject<HTMLParagraphElement>[] = [step1, step2, step3, step4];
-
     const stepContext = useContext(Step);
 
     useEffect(() => {
