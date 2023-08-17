@@ -11,7 +11,6 @@ interface plan {
     title: string;
     feeMonth: number;
     feeYear: number;
-    yearPay: boolean;
     div: HTMLDivElement;
 }
 
@@ -30,21 +29,18 @@ const SelectPlan = () => {
         title: 'Arcade',
         feeMonth: 9,
         feeYear: 90,
-        yearPay: false,
         div: arcadeDiv.current!
     },
     {
         title: 'Advanced',
         feeMonth: 12,
         feeYear: 120,
-        yearPay: false,
         div: advancedDiv.current!
     },
     {
         title: 'Arcade',
         feeMonth: 15,
         feeYear: 150,
-        yearPay: false,
         div: proDiv.current!
     }]
 

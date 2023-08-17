@@ -3,7 +3,6 @@ interface plan {
     title: string;
     feeMonth: number;
     feeYear: number;
-    yearPay: boolean;
     div: HTMLDivElement;
 }
 

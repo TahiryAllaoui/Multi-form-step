@@ -4,14 +4,49 @@ import { useContext, useEffect, useRef } from 'react';
 import { Step } from '../../utils/StepChange';
 import { Plan } from '../../utils/Plan';
 
+interface add {
+    title: string;
+    feeMonth: number;
+    feeYear: number;
+    yearPay: boolean;
+    div: HTMLDivElement;
+}
+
 const AddOns = () => {
     const stepContext = useContext(Step);
     const planContext = useContext(Plan);
     let div = document.createElement('div');
 
-    const online = useRef<HTMLDivElement>(div)
-    const storage = useRef<HTMLDivElement>(div)
-    const profile = useRef<HTMLDivElement>(div)
+    const online = useRef<HTMLDivElement>(div);
+    const storage = useRef<HTMLDivElement>(div);
+    const profile = useRef<HTMLDivElement>(div);
+
+    let plan: add[] = [{
+        title: 'Arcade',
+        feeMonth: 1,
+        feeYear: 10,
+        yearPay: false,
+        div: online.current!
+    },
+    {
+        title: 'Advanced',
+        feeMonth: 2,
+        feeYear: 20,
+        yearPay: false,
+        div: storage.current!
+    },
+    {
+        title: 'Arcade',
+        feeMonth: 5,
+        feeYear: 50,
+        yearPay: false,
+        div: profile.current!
+    }]
+
+
+    const handleClick = () => {
+
+    };
 
 
 
@@ -26,7 +61,7 @@ const AddOns = () => {
                     <p>Add-ons to multiplayer games.</p>
                 </div>
                 <div className="form-elements">
-                    <div className="form-item" ref={online}>
+                    <div className="form-item" ref={online} onClick={handleClick}>
                         <div className="tag">
                             <input type="checkbox" required name='online-service' id='online' />
                             <label htmlFor='online'>
@@ -36,7 +71,7 @@ const AddOns = () => {
                         </div>
                         {!planContext!.bill ? <p>+$1/mo</p> : <p>+$10/yr</p>}
                     </div>
-                    <div className="form-item" ref={storage}>
+                    <div className="form-item" ref={storage} onClick={handleClick}>
                         <div className="tag">
                             <input type="checkbox" required name='storage' id='storage' />
                             <label htmlFor='storage'>
@@ -46,7 +81,7 @@ const AddOns = () => {
                         </div>
                         {!planContext!.bill ? <p>+$2/mo</p> : <p>+$20/yr</p>}
                     </div>
-                    <div className="form-item" ref={profile}>
+                    <div className="form-item" ref={profile} onClick={handleClick}>
                         <div className="tag">
                             <input type="checkbox" required name='custom-profile' id='profile' />
                             <label htmlFor='profile'>

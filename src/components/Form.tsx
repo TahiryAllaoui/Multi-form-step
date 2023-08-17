@@ -13,7 +13,6 @@ interface plan {
     title: string;
     feeMonth: number;
     feeYear: number;
-    yearPay: boolean;
     div: HTMLDivElement;
 }
 
@@ -43,7 +42,6 @@ const Form = () => {
         title: 'Arcade',
         feeMonth: 9,
         feeYear: 90,
-        yearPay: false,
         div: div
     });
     // const plan: plan[] = [{
