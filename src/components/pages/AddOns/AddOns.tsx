@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
+import checkmark from '../../../assets/images/icon-checkmark.svg'
 import './style.scss'
-import { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { Step } from '../../utils/StepChange';
 import { Plan } from '../../utils/Plan';
 import { Add } from '../../utils/Addons';
@@ -23,11 +24,11 @@ const AddOns = () => {
     const storage = useRef<HTMLDivElement>(div);
     const profile = useRef<HTMLDivElement>(div);
 
-    let add: add[] = [{
+    let added: add[] = [{
         title: 'Online service',
         feeMonth: 1,
         feeYear: 10,
-        checked: false,
+        checked: addContext!.check,
         div: online.current!
     },
     {
@@ -45,11 +46,21 @@ const AddOns = () => {
         div: profile.current!
     }]
 
-
-    const handleClick = () => {
+    // let tmp: add[] = [];
+    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        addContext!.setCheck(!addContext!.check);
+        for (let i = 0; i < 3; i++) {
+            if (e.currentTarget.tabIndex == i) {
+                addContext!.check ? addContext!.setAdd([...addContext!.adds, added[i]]) : addContext!.setAdd(addContext!.adds.splice(0, i));
+                console.log(addContext!.adds)
+            }
+        }
 
     };
 
+    useEffect(() => {
+        addContext!.check ? online.current.classList.add("form-item-border") : online.current.classList.remove("form-item-border");
+    }, [addContext!.check])
 
 
     useEffect(() => {
@@ -64,35 +75,35 @@ const AddOns = () => {
                     <p>Add-ons to multiplayer games.</p>
                 </div>
                 <div className="form-elements">
-                    <div className="form-item" ref={online} onClick={handleClick}>
+                    <div className="form-item" ref={online} onClick={(e: React.MouseEvent<HTMLDivElement>) => handleClick(e)} tabIndex={0}>
                         <div className="tag">
-                            <input type="checkbox" required name='online-service' id='online' checked={false} />
-                            <label htmlFor='online'>
+                            <div className='check'><img src={checkmark} alt="" /></div>
+                            <label>
                                 <h3>Online ervice</h3>
                                 <p>Access to multiplayer games</p>
                             </label>
                         </div>
-                        {!planContext!.bill ? <p>+$1/mo</p> : <p>+$10/yr</p>}
+                        {!planContext!.bill ? <p>+${added[0].feeMonth}/mo</p> : <p>+${added[0].feeYear}/yr</p>}
                     </div>
-                    <div className="form-item" ref={storage} onClick={handleClick}>
+                    <div className="form-item" ref={storage} onClick={(e: React.MouseEvent<HTMLDivElement>) => handleClick(e)} tabIndex={1}>
                         <div className="tag">
-                            <input type="checkbox" required name='storage' id='storage' checked={false} />
-                            <label htmlFor='storage'>
+                            <div className='check'><img src={checkmark} alt="" /></div>
+                            <label>
                                 <h3>Larger storage</h3>
                                 <p>Extra 1TB of cloud save</p>
                             </label>
                         </div>
-                        {!planContext!.bill ? <p>+$2/mo</p> : <p>+$20/yr</p>}
+                        {!planContext!.bill ? <p>+${added[1].feeMonth}/mo</p> : <p>+${added[1].feeYear}/yr</p>}
                     </div>
-                    <div className="form-item" ref={profile} onClick={handleClick}>
+                    <div className="form-item" ref={profile} onClick={(e: React.MouseEvent<HTMLDivElement>) => handleClick(e)} tabIndex={2}>
                         <div className="tag">
-                            <input type="checkbox" required name='custom-profile' id='profile' checked={false} />
-                            <label htmlFor='profile'>
+                            <div className='check'><img src={checkmark} alt="" /></div>
+                            <label>
                                 <h3>Customizable profile</h3>
                                 <p>Custom theme on your profile</p>
                             </label>
                         </div>
-                        {!planContext!.bill ? <p>+$2/mo</p> : <p>+$20/yr</p>}
+                        {!planContext!.bill ? <p>+${added[2].feeMonth}/mo</p> : <p>+${added[2].feeYear}/yr</p>}
                     </div>
                 </div>
             </div>
@@ -101,7 +112,8 @@ const AddOns = () => {
                     Go back
                 </Link>
                 <Link to='/summary' className='next-Link'>
-                    <button disabled={addContext!.button}>Next step</button>
+                    <button>Next step</button>
+                    {/* disabled={addContext!.button} */}
                 </Link>
             </div>
         </form>

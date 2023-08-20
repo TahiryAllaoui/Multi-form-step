@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import PersonalInfo from './pages/PersonalInfo/PersonalInfo';
 import '../style/Form.scss';
 import SelectPlan from './pages/SelectPlan/SelectPlan';
@@ -72,13 +72,17 @@ const Form = () => {
     //Add-ons
     const [payForAdd, setPayForAdd] = useState(0);
     const [buttonIsDisabledForAdd, setButtonIsDisabledForAdd] = useState(true);
-    const [addState, setAddState] = useState<add>({
-        title: '',
-        feeMonth: 0,
-        feeYear: 0,
-        div: div,
-        checked: false
-    });
+    const [check, setCheck] = useState(false);
+    const [clickedForAdd, setClickedForAdd] = useState(false);
+    const [addState, setAddState] = useState<add[]>([
+        //     {
+        //     title: '',
+        //     feeMonth: 0,
+        //     feeYear: 0,
+        //     div: div,
+        //     checked: false
+        // }
+    ]);
 
     let r: AddType = {
         pay: payForAdd,
@@ -88,7 +92,11 @@ const Form = () => {
         button: buttonIsDisabledForAdd,
         setButton: setButtonIsDisabledForAdd,
         adds: addState,
-        setAdd: setAddState
+        setAdd: setAddState,
+        clicked: clickedForAdd,
+        setClicked: setClickedForAdd,
+        check: check,
+        setCheck: setCheck
     }
 
 

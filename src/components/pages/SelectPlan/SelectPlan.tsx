@@ -56,6 +56,7 @@ const SelectPlan = () => {
     useEffect(() => {
         for (let i = 0; i < plan.length; i++) {
             if (plan[i].div == planContext!.plan.div) {
+                planContext!.setPlan({ ...planContext!.plan, div: plan[i].div, feeMonth: plan[i].feeMonth, feeYear: plan[i].feeYear, title: plan[i].title })
                 plan[i].div.classList.add('choice-border');
                 (!planContext!.bill) ? planContext!.setPay(plan[i].feeMonth) : planContext!.setPay(plan[i].feeYear);
                 planContext!.setButton(false)

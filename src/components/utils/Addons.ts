@@ -14,8 +14,12 @@ interface AddType {
     setTotalBill: (s: number) => void;
     button: boolean;
     setButton: (m: boolean) => void;
-    adds: add;
-    setAdd: (p: add) => void;
+    adds: add[];
+    setAdd: (p: add[]) => void;
+    check: boolean;
+    setCheck: (a: boolean) => void;
+    clicked: boolean;
+    setClicked: (m: boolean) => void
 
 }
 
