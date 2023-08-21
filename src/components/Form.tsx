@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import PersonalInfo from './pages/PersonalInfo/PersonalInfo';
 import '../style/Form.scss';
 import SelectPlan from './pages/SelectPlan/SelectPlan';
@@ -8,20 +8,12 @@ import Summary from './pages/Summary/Summary';
 import Completed from './pages/Completed/Completed';
 import { Identity, IdentityType } from './utils/Info';
 import { Plan, PlanType } from './utils/Plan';
-import { AddType, Add } from './utils/Addons';
+import { AddOn, AddOnContextType, AddOnContext } from './utils/Addons';
 
 interface plan {
     title: string;
     feeMonth: number;
     feeYear: number;
-    div: HTMLDivElement;
-}
-
-interface add {
-    title: string;
-    feeMonth: number;
-    feeYear: number;
-    checked: boolean;
     div: HTMLDivElement;
 }
 
@@ -70,41 +62,41 @@ const Form = () => {
     }
 
     //Add-ons
-    const [payForAdd, setPayForAdd] = useState(0);
-    const [buttonIsDisabledForAdd, setButtonIsDisabledForAdd] = useState(true);
-    const [check, setCheck] = useState(false);
-    const [clickedForAdd, setClickedForAdd] = useState(false);
-    const [addState, setAddState] = useState<add[]>([
-        //     {
-        //     title: '',
-        //     feeMonth: 0,
-        //     feeYear: 0,
-        //     div: div,
-        //     checked: false
-        // }
-    ]);
+    const [addOns, setAddOns] = useState<AddOn[]>([{
+        title: 'Online service',
+        monthPrice: 1,
+        yearPrice: 10,
+        checked: false,
+    },
+    {
+        title: 'Larger storage',
+        monthPrice: 2,
+        yearPrice: 20,
+        checked: false,
+    },
+    {
+        title: 'Customizable profile',
+        monthPrice: 5,
+        yearPrice: 50,
+        checked: false,
+    }]
+    );
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+    const [checkedIndexes, setCheckedIndexes] = useState<number[]>([]);
 
-    let r: AddType = {
-        pay: payForAdd,
-        setPay: setPayForAdd,
-        totalBill: total,
-        setTotalBill: setTotal,
-        button: buttonIsDisabledForAdd,
-        setButton: setButtonIsDisabledForAdd,
-        adds: addState,
-        setAdd: setAddState,
-        clicked: clickedForAdd,
-        setClicked: setClickedForAdd,
-        check: check,
-        setCheck: setCheck
+    const r: AddOnContextType = {
+        addOns: addOns,
+        setAddons: setAddOns,
+        buttonDisabled: buttonDisabled,
+        setButtonDisabled: setButtonDisabled,
+        checkedIndexes: checkedIndexes,
+        setCheckedIndexes: setCheckedIndexes
     }
-
-
     return (
         <BrowserRouter>
             <Identity.Provider value={t}>
                 <Plan.Provider value={s}>
-                    <Add.Provider value={r}>
+                    <AddOnContext.Provider value={r}>
                         <Routes>
                             <Route path='/' element={<PersonalInfo />} />
                             <Route path='/select-plan' element={<SelectPlan />} />
@@ -112,7 +104,7 @@ const Form = () => {
                             <Route path='/summary' element={<Summary />} />
                             <Route path='/completed' element={<Completed />} />
                         </Routes>
-                    </Add.Provider>
+                    </AddOnContext.Provider>
                 </Plan.Provider>
             </Identity.Provider>
         </BrowserRouter>

@@ -1,29 +1,26 @@
 import { createContext } from "react";
-interface add {
+
+export interface AddOn {
     title: string;
-    feeMonth: number;
-    feeYear: number;
-    checked: boolean
-    div: HTMLDivElement;
+    monthPrice: number;
+    yearPrice: number;
+    checked: boolean;
 }
 
-interface AddType {
-    pay: number;
-    setPay: (s: number) => void;
-    totalBill: number;
-    setTotalBill: (s: number) => void;
-    button: boolean;
-    setButton: (m: boolean) => void;
-    adds: add[];
-    setAdd: (p: add[]) => void;
-    check: boolean;
-    setCheck: (a: boolean) => void;
-    clicked: boolean;
-    setClicked: (m: boolean) => void
-
+export interface AddOnContextType {
+    setAddons: (addOns: AddOn[]) => void,
+    addOns: AddOn[],
+    buttonDisabled: boolean,
+    setButtonDisabled: (val: boolean) => void,
+    checkedIndexes: number[],
+    setCheckedIndexes: (val: number[]) => void
 }
 
-const Add = createContext<AddType | null>(null);
-
-export { Add };
-export type { AddType };
+export const AddOnContext = createContext<AddOnContextType>({
+    setAddons: (addOns: AddOn[]) => { },
+    addOns: [],
+    buttonDisabled: false,
+    setButtonDisabled: (val: boolean) => { },
+    checkedIndexes: [],
+    setCheckedIndexes: (val: number[]) => { }
+});
