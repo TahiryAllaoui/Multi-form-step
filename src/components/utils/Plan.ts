@@ -1,28 +1,20 @@
 import { createContext } from "react";
-interface plan {
+export interface PlanInterface {
     title: string;
-    feeMonth: number;
-    feeYear: number;
-    div: HTMLDivElement;
+    monthPrice: number;
+    yearPrice: number;
+    checked: boolean;
 }
 
-interface PlanType {
-    pay: number;
-    bill: boolean;
-    totalBill: number;
-    setBill: (m: boolean) => void;
-    setTotalBill: (s: number) => void;
-    setPay: (s: number) => void;
-    button: boolean;
-    setButton: (m: boolean) => void;
-    clicked: boolean;
-    setClicked: (m: boolean) => void;
-    plan: plan;
-    setPlan: (m: plan) => void;
-
+export interface PlanContextType {
+    monthly: boolean
+    setMonthly: (val: boolean) => void,
+    setPlan: (a: PlanInterface) => void,
+    plan: PlanInterface,
+    isPlanButtonDisabled: boolean,
+    setIsPlanButtonDisabled: (val: boolean) => void,
+    planCheckedIndexes: number[],
+    setPlanCheckedIndexes: (val: number[]) => void
 }
 
-const Plan = createContext<PlanType | null>(null);
-
-export { Plan };
-export type { PlanType };
+export const PlanContext = createContext<PlanContextType | null>(null);

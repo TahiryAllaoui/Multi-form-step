@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 import checkmark from '../../../assets/images/icon-checkmark.svg'
 import './style.scss'
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Step } from '../../utils/StepChange';
-import { Plan } from '../../utils/Plan';
+import { PlanContext } from '../../utils/Plan';
 import { AddOnContext } from '../../utils/Addons';
 
 const AddOns = () => {
     const stepContext = useContext(Step);
-    const planContext = useContext(Plan);
+    const planContext = useContext(PlanContext);
     const addContext = useContext(AddOnContext);
 
     useEffect(() => {
@@ -31,14 +31,16 @@ const AddOns = () => {
         }
     ]
 
-    const handleClick = (e: React.MouseEvent<HTMLDivElement>, i: number) => {
+    const handleClick = (i: number) => {
+        addContext!.setButtonDisabled(false);
         const addOnsTmp = addContext!.addOns;
         for (let j = 0; j < addOnsTmp.length; j++) {
             if (i == j) {
                 addOnsTmp[i].checked = !addOnsTmp[i].checked;
                 if (addOnsTmp[i].checked && !addContext!.checkedIndexes.includes(i)) {
                     addContext!.setCheckedIndexes([...addContext!.checkedIndexes, i]);
-                } else if (!addOnsTmp[i].checked && addContext!.checkedIndexes.includes(i)) {
+                }
+                else if (!addOnsTmp[i].checked && addContext!.checkedIndexes.includes(i)) {
                     const tmp: number[] = [];
                     addContext!.checkedIndexes.forEach((k) => {
                         if (k != i) {
@@ -53,11 +55,6 @@ const AddOns = () => {
         addContext!.setAddons(addOnsTmp);
     }
 
-
-    useEffect(() => {
-        console.log(addContext!.checkedIndexes)
-    }, [addContext!.checkedIndexes])
-
     return (
         <form className='step-3'>
             <div className="container">
@@ -68,15 +65,15 @@ const AddOns = () => {
                 <div className="form-elements">
                     {
                         [0, 1, 2].map((i) => {
-                            return <div className={`form-item ${addContext!.checkedIndexes.includes(i) ? "form-item-border" : ""}`} onClick={(e: React.MouseEvent<HTMLDivElement>) => handleClick(e, i)}>
+                            return <div key={i} className={`form-item ${addContext!.checkedIndexes.includes(i) ? "form-item-border" : ""}`} onClick={() => handleClick(i)}>
                                 <div className="tag">
-                                    <div className='check'><img src={checkmark} alt="" /></div>
+                                    <div className={`check ${addContext!.checkedIndexes.includes(i) ? "check-bg" : ""}`}><img src={checkmark} alt="" /></div>
                                     <label>
                                         <h3>{addOnViewitems[i].h3}</h3>
                                         <p>{addOnViewitems[i].p}</p>
                                     </label>
                                 </div>
-                                {!planContext!.bill ? <p>+${addContext!.addOns[i].monthPrice}/mo</p> : <p>+${addContext!.addOns[i].yearPrice}/yr</p>}
+                                {!planContext!.monthly ? <p>+${addContext!.addOns[i].monthPrice}/mo</p> : <p>+${addContext!.addOns[i].yearPrice}/yr</p>}
                             </div>
                         })
                     }
@@ -87,8 +84,8 @@ const AddOns = () => {
                     Go back
                 </Link>
                 <Link to='/summary' className='next-Link'>
-                    <button>Next step</button>
-                    {/* disabled={addContext!.button} */}
+                    <button disabled={addContext!.buttonDisabled}>Next step</button>
+
                 </Link>
             </div>
         </form>

@@ -1,21 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import PersonalInfo from './pages/PersonalInfo/PersonalInfo';
 import '../style/Form.scss';
-import SelectPlan from './pages/SelectPlan/SelectPlan';
 import AddOns from './pages/AddOns/AddOns';
 import Summary from './pages/Summary/Summary';
 import Completed from './pages/Completed/Completed';
 import { Identity, IdentityType } from './utils/Info';
-import { Plan, PlanType } from './utils/Plan';
+import { PlanContext, PlanContextType, PlanInterface } from './utils/Plan';
 import { AddOn, AddOnContextType, AddOnContext } from './utils/Addons';
-
-interface plan {
-    title: string;
-    feeMonth: number;
-    feeYear: number;
-    div: HTMLDivElement;
-}
+import SelectPlan from './pages/SelectPlan/SelectPlan';
 
 const Form = () => {
 
@@ -33,32 +26,25 @@ const Form = () => {
     }
 
     //Bill
-    let div = document.createElement('div');
-    const [pay, setPay] = useState(0);
-    const [bill, setBill] = useState(false);
-    const [clicked, setClicked] = useState(false);
-    const [total, setTotal] = useState(0);
-    const [buttonIsDisabled, setButtonIsDisabled] = useState(true);
-    const [planState, setPlanState] = useState<plan>({
-        title: '',
-        feeMonth: 0,
-        feeYear: 0,
-        div: div
+    const [userPlan, setUserPlan] = useState<PlanInterface>({
+        title: "",
+        monthPrice: 0,
+        yearPrice: 0,
+        checked: false
     });
+    const [monthly, setMonthly] = useState<boolean>(true)
+    const [isPlanButtonDisabled, setIsPlanButtonDisabled] = useState<boolean>(false);
+    const [planCheckedIndexes, setPlanCheckedIndexes] = useState<number[]>([]);
 
-    let s: PlanType = {
-        pay: pay,
-        setPay: setPay,
-        bill: bill,
-        setBill: setBill,
-        totalBill: total,
-        setTotalBill: setTotal,
-        button: buttonIsDisabled,
-        setButton: setButtonIsDisabled,
-        clicked: clicked,
-        setClicked: setClicked,
-        plan: planState,
-        setPlan: setPlanState
+    const planDefType: PlanContextType = {
+        monthly: monthly,
+        setMonthly: setMonthly,
+        plan: userPlan,
+        setPlan: setUserPlan,
+        isPlanButtonDisabled: isPlanButtonDisabled,
+        setIsPlanButtonDisabled: setIsPlanButtonDisabled,
+        planCheckedIndexes: planCheckedIndexes,
+        setPlanCheckedIndexes: setPlanCheckedIndexes
     }
 
     //Add-ons
@@ -81,7 +67,7 @@ const Form = () => {
         checked: false,
     }]
     );
-    const [buttonDisabled, setButtonDisabled] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(true);
     const [checkedIndexes, setCheckedIndexes] = useState<number[]>([]);
 
     const r: AddOnContextType = {
@@ -95,7 +81,7 @@ const Form = () => {
     return (
         <BrowserRouter>
             <Identity.Provider value={t}>
-                <Plan.Provider value={s}>
+                <PlanContext.Provider value={planDefType}>
                     <AddOnContext.Provider value={r}>
                         <Routes>
                             <Route path='/' element={<PersonalInfo />} />
@@ -105,7 +91,7 @@ const Form = () => {
                             <Route path='/completed' element={<Completed />} />
                         </Routes>
                     </AddOnContext.Provider>
-                </Plan.Provider>
+                </PlanContext.Provider>
             </Identity.Provider>
         </BrowserRouter>
     );

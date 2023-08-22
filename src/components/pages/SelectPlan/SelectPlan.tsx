@@ -1,93 +1,73 @@
-import arcade from '../../../assets/images/icon-arcade.svg'
-import advanced from '../../../assets/images/icon-advanced.svg'
-import pro from '../../../assets/images/icon-pro.svg'
-import { Link } from 'react-router-dom';
-import './style.scss'
-import { useContext, useEffect, useRef } from 'react';
+import { PlanInterface, PlanContext } from '../../utils/Plan';
+import { useContext, useEffect } from 'react';
 import { Step } from '../../utils/StepChange';
-import { Plan } from '../../utils/Plan';
-
-interface plan {
-    title: string;
-    feeMonth: number;
-    feeYear: number;
-    div: HTMLDivElement;
-}
+import { Link } from 'react-router-dom';
+import arcadeImg from '../../../assets/images/icon-arcade.svg';
+import advancedImg from '../../../assets/images/icon-advanced.svg';
+import proImg from '../../../assets/images/icon-pro.svg';
+import './style.scss';
 
 const SelectPlan = () => {
+    let myArcadeImg = arcadeImg;
+    let myAdvancedImg = advancedImg;
+    let myProImg = proImg;
+
+    let stepContext = useContext(Step);
+    let planContext = useContext(PlanContext);
 
     //Plan
-    let planContext = useContext(Plan)
-
-    let div = document.createElement('div');
-
-    const arcadeDiv = useRef<HTMLDivElement>(div);
-    const advancedDiv = useRef<HTMLDivElement>(div);
-    const proDiv = useRef<HTMLDivElement>(div);
-
-    let plan: plan[] = [{
+    let planOnDOM: PlanInterface[] = [{
         title: 'Arcade',
-        feeMonth: 9,
-        feeYear: 90,
-        div: arcadeDiv.current!
+        monthPrice: 9,
+        yearPrice: 90,
+        checked: false,
     },
     {
         title: 'Advanced',
-        feeMonth: 12,
-        feeYear: 120,
-        div: advancedDiv.current!
+        monthPrice: 12,
+        yearPrice: 120,
+        checked: false,
     },
     {
-        title: 'Arcade',
-        feeMonth: 15,
-        feeYear: 150,
-        div: proDiv.current!
+        title: 'pro',
+        monthPrice: 15,
+        yearPrice: 150,
+        checked: false,
     }]
 
-    const swithButton = useRef<HTMLDivElement>(null);
-    const bonus1 = useRef<HTMLParagraphElement>(null);
-    const bonus2 = useRef<HTMLParagraphElement>(null);
-    const bonus3 = useRef<HTMLParagraphElement>(null);
-
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        planContext!.setPlan({ ...planContext!.plan, div: e.currentTarget });
-        planContext!.setClicked(!(planContext!.clicked));
+
     };
-    useEffect(() => {
-        for (let i = 0; i < plan.length; i++) {
-            if (plan[i].div == planContext!.plan.div) {
-                planContext!.setPlan({ ...planContext!.plan, div: plan[i].div, feeMonth: plan[i].feeMonth, feeYear: plan[i].feeYear, title: plan[i].title })
-                plan[i].div.classList.add('choice-border');
-                (!planContext!.bill) ? planContext!.setPay(plan[i].feeMonth) : planContext!.setPay(plan[i].feeYear);
-                planContext!.setButton(false)
-            }
-            else {
-                plan[i].div.classList.remove('choice-border');
-            }
-        }
-    }, [planContext!.clicked])
+    // useEffect(() => {
+    //     // for (let i = 0; i < plan.length; i++) {
+    //     //     if (plan[i].div == planContext!.plan.div) {
+    //     //         planContext!.setPlan({ ...planContext!.plan, div: plan[i].div, feeMonth: plan[i].feeMonth, feeYear: plan[i].feeYear, title: plan[i].title })
+    //     //         plan[i].div.classList.add('choice-border');
+    //     //         (!planContext!.bill) ? planContext!.setPay(plan[i].feeMonth) : planContext!.setPay(plan[i].feeYear);
+    //     //         planContext!.setButton(false)
+    //     //     }
+    //     //     else {
+    //     //         plan[i].div.classList.remove('choice-border');
+    //     //     }
+    //     // }
+    // }, [planContext!.clicked])
 
 
-    //Monthly or yearly Bill
+    //Monthly or yearly Bill switch
     const handleSwitch = () => {
-        planContext!.setBill(!planContext!.bill);
+        let mySwitchButton = document.querySelector('.bill .switch-container .switch') as HTMLDivElement;
+        planContext!.setMonthly(!planContext!.monthly);
+        mySwitchButton.classList.toggle('switch-translate');
     };
-
-    useEffect(() => {
-        !planContext!.bill ? swithButton.current!.style.transform = 'translateX(0px)' : swithButton.current!.style.transform = "translateX(15px)";
-        !planContext!.bill ? bonus1.current!.style.display = 'none' : bonus1.current!.style.display = "block";
-        !planContext!.bill ? bonus2.current!.style.display = 'none' : bonus2.current!.style.display = "block";
-        !planContext!.bill ? bonus3.current!.style.display = 'none' : bonus3.current!.style.display = "block";
-        !planContext!.bill ? planContext!.setBill(false) : planContext!.setBill(true);
-    }, [planContext!.bill])
 
 
     //For sidebar scrolling step
-    const stepContext = useContext(Step);
     useEffect(() => {
         stepContext!.setStepId(1);
-        planContext!.setButton(true);
+        planContext!.setIsPlanButtonDisabled(true);
     }, []);
+
+    const planItems = [myArcadeImg, myAdvancedImg, myProImg]
 
     return (
         <form className='step-2'>
@@ -97,35 +77,23 @@ const SelectPlan = () => {
                     <p>You have option of monthly or yearly billing.</p>
                 </div>
                 <div className="step-items" >
-                    <div className="choice" onClick={(e: React.MouseEvent<HTMLDivElement>) => handleClick(e)} ref={arcadeDiv}>
-                        <img src={arcade} alt="" />
-                        <div>
-                            <h3>{plan[0].title}</h3>
-                            {!(planContext!.bill) ? <p>${plan[0].feeMonth}/mo</p> : <p>${plan[0].feeYear}/yr</p>}
-                            <p className="month-bonus" ref={bonus1}>2 months free</p>
-                        </div>
-                    </div>
-                    <div className="choice" onClick={(e: React.MouseEvent<HTMLDivElement>) => handleClick(e)} ref={advancedDiv}>
-                        <img src={advanced} alt="" />
-                        <div>
-                            <h3>{plan[1].title}</h3>
-                            {!(planContext!.bill) ? <p>${plan[1].feeMonth}/mo</p> : <p>${plan[1].feeYear}/yr</p>}
-                            <p className="month-bonus" ref={bonus2}>2 months free</p>
-                        </div>
-                    </div>
-                    <div className="choice" onClick={(e: React.MouseEvent<HTMLDivElement>) => handleClick(e)} ref={proDiv}>
-                        <img src={pro} alt="" />
-                        <div>
-                            <h3>{plan[2].title}</h3>
-                            {!(planContext!.bill) ? <p>${plan[2].feeMonth}/mo</p> : <p>${plan[2].feeYear}/yr</p>}
-                            <p className="month-bonus" ref={bonus3}>2 months free</p>
-                        </div>
-                    </div>
+                    {
+                        [0, 1, 2].map((i) => {
+                            return <div key={i} className="choice" onClick={(e: React.MouseEvent<HTMLDivElement>) => handleClick(e)}>
+                                <img src={planItems[i]} />
+                                <div>
+                                    <h3>{planOnDOM[i].title}</h3>
+                                    {(planContext!.monthly) ? <p>${planOnDOM[0].monthPrice}/mo</p> : <p>${planOnDOM[0].yearPrice}/yr</p>}
+                                    {!(planContext!.monthly) && <p className="month-bonus">2 months free</p>}
+                                </div>
+                            </div>
+                        })
+                    }
                 </div>
                 <div className="bill">
                     <p>Monthly</p>
                     <div className="switch-container" onClick={handleSwitch}>
-                        <div className="switch" ref={swithButton}></div>
+                        <div className="switch"></div>
                     </div>
                     <p>Yearly</p>
                 </div>
@@ -135,7 +103,7 @@ const SelectPlan = () => {
                     Go back
                 </Link>
                 <Link to='/add-ons' className='next-Link'>
-                    <button disabled={planContext!.button}>Next step</button>
+                    <button disabled={planContext!.isPlanButtonDisabled}>Next step</button>
                 </Link>
             </div>
         </form>
