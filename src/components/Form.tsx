@@ -1,14 +1,14 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
-import PersonalInfo from './pages/PersonalInfo/PersonalInfo';
-import '../style/Form.scss';
-import AddOns from './pages/AddOns/AddOns';
-import Summary from './pages/Summary/Summary';
-import Completed from './pages/Completed/Completed';
-import { Identity, IdentityType } from './utils/Info';
 import { PlanContext, PlanContextType, PlanInterface } from './utils/Plan';
 import { AddOn, AddOnContextType, AddOnContext } from './utils/Addons';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import PersonalInfo from './pages/PersonalInfo/PersonalInfo';
 import SelectPlan from './pages/SelectPlan/SelectPlan';
+import { Identity, IdentityType } from './utils/Info';
+import Completed from './pages/Completed/Completed';
+import Summary from './pages/Summary/Summary';
+import AddOns from './pages/AddOns/AddOns';
+import { useState } from 'react'
+import '../style/Form.scss';
 
 const Form = () => {
 
@@ -33,8 +33,11 @@ const Form = () => {
         checked: false
     });
     const [monthly, setMonthly] = useState<boolean>(true)
-    const [isPlanButtonDisabled, setIsPlanButtonDisabled] = useState<boolean>(false);
+    const [isPlanButtonDisabled, setIsPlanButtonDisabled] = useState<boolean>(true);
     const [planCheckedIndexes, setPlanCheckedIndexes] = useState<number[]>([]);
+    const [currentPlanIndex, setCurrentPlanIndex] = useState(3);
+    const [totalPrice, setTotalPrice] = useState(0);
+
 
     const planDefType: PlanContextType = {
         monthly: monthly,
@@ -44,39 +47,24 @@ const Form = () => {
         isPlanButtonDisabled: isPlanButtonDisabled,
         setIsPlanButtonDisabled: setIsPlanButtonDisabled,
         planCheckedIndexes: planCheckedIndexes,
-        setPlanCheckedIndexes: setPlanCheckedIndexes
+        setPlanCheckedIndexes: setPlanCheckedIndexes,
+        currentPlanIndex: currentPlanIndex,
+        setCurrentPlanIndex: setCurrentPlanIndex,
+        totalPrice: totalPrice,
+        setTotalPrice: setTotalPrice
     }
 
     //Add-ons
-    const [addOns, setAddOns] = useState<AddOn[]>([{
-        title: 'Online service',
-        monthPrice: 1,
-        yearPrice: 10,
-        checked: false,
-    },
-    {
-        title: 'Larger storage',
-        monthPrice: 2,
-        yearPrice: 20,
-        checked: false,
-    },
-    {
-        title: 'Customizable profile',
-        monthPrice: 5,
-        yearPrice: 50,
-        checked: false,
-    }]
-    );
-    const [buttonDisabled, setButtonDisabled] = useState(true);
-    const [checkedIndexes, setCheckedIndexes] = useState<number[]>([]);
-
+    const [addOns, setAddOns] = useState<AddOn[]>([]);
+    const [checkedIndexes, setCheckedIndexes] = useState<boolean[]>([false, false, false]);
+    const [totalAddOnPrice, setTotalAddOnPrice] = useState<number>(0);
     const r: AddOnContextType = {
         addOns: addOns,
         setAddons: setAddOns,
-        buttonDisabled: buttonDisabled,
-        setButtonDisabled: setButtonDisabled,
         checkedIndexes: checkedIndexes,
-        setCheckedIndexes: setCheckedIndexes
+        setCheckedIndexes: setCheckedIndexes,
+        totalAddOnPrice: totalAddOnPrice,
+        setTotalAddOnPrice: setTotalAddOnPrice
     }
     return (
         <BrowserRouter>

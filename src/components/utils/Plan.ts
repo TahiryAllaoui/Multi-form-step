@@ -14,7 +14,11 @@ export interface PlanContextType {
     isPlanButtonDisabled: boolean,
     setIsPlanButtonDisabled: (val: boolean) => void,
     planCheckedIndexes: number[],
-    setPlanCheckedIndexes: (val: number[]) => void
+    setPlanCheckedIndexes: (val: number[]) => void,
+    currentPlanIndex: number,
+    setCurrentPlanIndex: (val: number) => void,
+    totalPrice: number,
+    setTotalPrice: (val: number) => void
 }
 
 export const PlanContext = createContext<PlanContextType | null>(null);

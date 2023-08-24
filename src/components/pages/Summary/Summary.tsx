@@ -2,11 +2,24 @@ import { Link } from 'react-router-dom';
 import './style.scss'
 import { useContext, useEffect } from 'react';
 import { Step } from '../../utils/StepChange';
+import { AddOnContext } from '../../utils/Addons';
+import { PlanContext } from '../../utils/Plan';
 
 const Summary = () => {
-
-
     const stepContext = useContext(Step);
+    const addContext = useContext(AddOnContext);
+    const planContext = useContext(PlanContext);
+
+    //Add-ons list rendering
+    let addOnIndex: number[] = [];
+    for (let i = 0; i < addContext!.addOns.length; i++)
+        addOnIndex.push(i);
+
+    //Total bill
+
+
+
+
 
     useEffect(() => {
         stepContext!.setStepId(3)
@@ -22,26 +35,30 @@ const Summary = () => {
                 <div className="step-items">
                     <div className="plan">
                         <div>
-                            <h3>Arcade (Monthly)</h3>
+                            {planContext!.monthly ? <h3>{planContext!.plan.title} (Monthly)</h3> : <h3>{planContext!.plan.title} (Yearly)</h3>}
                             <Link to='/select-plan' className='links'>Change</Link>
                         </div>
-                        <p>$9/mo</p>
+                        {planContext!.monthly ? <p>${planContext!.plan.monthPrice}/mo</p> : <p>${planContext!.plan.yearPrice}/yr</p>}
                     </div>
                     <div className="line"></div>
-                    <div className="add-ons">
-                        <div className="add-ons-item">
-                            <h3>Online service</h3>
-                            <p>+$1/mo</p>
-                        </div>
-                        <div className="add-ons-item">
-                            <h3>Larger storage</h3>
-                            <p>+$2/mo</p>
-                        </div>
-                    </div>
+                    {
+                        addOnIndex.map((i) => {
+                            return <div key={i} className="add-ons">
+                                <div className="add-ons-item">
+                                    <div className="title-plan">
+                                        <h3>{addContext!.addOns[i].title}</h3>
+                                    </div>
+                                    <div className="price">
+                                        {planContext!.monthly ? <p>+${addContext!.addOns[i].monthPrice}/mo</p> : <p>+${addContext!.addOns[i].yearPrice}/yr</p>}
+                                    </div>
+                                </div>
+                            </div>
+                        })
+                    }
                 </div>
                 <div className="bill">
-                    <p>Total (per month)</p>
-                    <h3>+$12/mo</h3>
+                    {planContext!.monthly ? <p>Total (per month)</p> : <p>Total (per year)</p>}
+                    {planContext!.monthly ? <h3>+${planContext!.totalPrice}/mo</h3> : <h3>+${planContext!.totalPrice}/yr</h3>}
                 </div>
             </div>
             <div className="form-link">
