@@ -29,7 +29,7 @@ const SelectPlan = () => {
         checked: false,
     },
     {
-        title: 'pro',
+        title: 'Pro',
         monthPrice: 15,
         yearPrice: 150,
         checked: false,
@@ -41,14 +41,23 @@ const SelectPlan = () => {
         let tmp: PlanInterface = planOnDOM[i];
         tmp.checked = true;
         planContext!.setPlan(tmp);
-        console.log(planContext!.plan);
-
+        if (planContext!.monthly) {
+            planContext!.setTotalPrice(planContext!.plan.monthPrice);
+        }
+        else {
+            planContext!.setTotalPrice(planContext!.plan.yearPrice);
+        }
     };
 
     //For total Price
     useEffect(() => {
-        !(planContext!.monthly) ? planContext!.setTotalPrice(planContext!.plan.monthPrice) : planContext!.setTotalPrice(planContext!.plan.yearPrice)
-    }, [planContext!.plan])
+        if (planContext!.monthly) {
+            planContext!.setTotalPrice(planContext!.plan.monthPrice);
+        }
+        else {
+            planContext!.setTotalPrice(planContext!.plan.yearPrice);
+        }
+    }, [planContext!.plan, planContext!.monthly])
 
 
     //Monthly or yearly Bill switch

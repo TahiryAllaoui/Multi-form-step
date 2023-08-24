@@ -31,6 +31,8 @@
         .step-color {
             transition: all 200ms linear;
             background-color: $Light-blue;
+            color: $Marine-blue;
+            border: 1px solid $Light-blue;
         }
 
         div {

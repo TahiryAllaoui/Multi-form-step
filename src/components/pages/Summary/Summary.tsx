@@ -12,17 +12,12 @@ const Summary = () => {
 
     //Add-ons list rendering
     let addOnIndex: number[] = [];
-    for (let i = 0; i < addContext!.addOns.length; i++)
+    for (let i = 0; i < addContext!.addOns.length; i++) {
         addOnIndex.push(i);
-
-    //Total bill
-
-
-
-
+    }
 
     useEffect(() => {
-        stepContext!.setStepId(3)
+        stepContext!.setStepId(3);
     }, [])
 
     return (
@@ -58,7 +53,7 @@ const Summary = () => {
                 </div>
                 <div className="bill">
                     {planContext!.monthly ? <p>Total (per month)</p> : <p>Total (per year)</p>}
-                    {planContext!.monthly ? <h3>+${planContext!.totalPrice}/mo</h3> : <h3>+${planContext!.totalPrice}/yr</h3>}
+                    {planContext!.monthly ? <h3>+${planContext!.totalPrice + addContext!.totalAddOnPrice}/mo</h3> : <h3>+${planContext!.totalPrice + addContext!.totalAddOnPrice}/yr</h3>}
                 </div>
             </div>
             <div className="form-link">

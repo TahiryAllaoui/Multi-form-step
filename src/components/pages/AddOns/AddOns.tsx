@@ -44,6 +44,7 @@ const AddOns = () => {
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>, i: number) => {
         let tmpForcheck = addContext!.checkedIndexes;
+
         tmpForcheck[i] = !addContext!.checkedIndexes[i];
         addContext!.setCheckedIndexes(tmpForcheck);
         const tag = e.currentTarget.querySelector(".tag div") as HTMLElement;
@@ -55,21 +56,8 @@ const AddOns = () => {
             tag.classList.remove("check-bg");
         }
         addContext!.setAddons(addOnView.filter((current, index) => addContext!.checkedIndexes[index]));
-        console.log(addContext!.addOns);
-    }
 
-    useEffect(() => {
-        for (let i = 0; i < addContext!.addOns.length; i++) {
-            if (planContext!.monthly && addContext!.checkedIndexes) {
-                addContext!.setTotalAddOnPrice(0);
-                addContext!.setTotalAddOnPrice(addContext!.totalAddOnPrice + addContext!.addOns[i].monthPrice);
-            }
-            else {
-                addContext!.setTotalAddOnPrice(0);
-                addContext!.setTotalAddOnPrice(addContext!.totalAddOnPrice + addContext!.addOns[i].yearPrice);
-            }
-        }
-    }, [addContext!.addOns]);
+    }
 
     useEffect(() => {
         const formItems = document.querySelectorAll(".form-item");
@@ -85,6 +73,19 @@ const AddOns = () => {
             }
         }
     }, [addContext!.checkedIndexes]);
+
+    //For total add-ons price:
+    useEffect(() => {
+        let tmpPrice: number = 0;
+        for (let i = 0; i < addContext!.addOns.length; i++) {
+            if (planContext!.monthly)
+                tmpPrice = tmpPrice + addContext!.addOns[i].monthPrice
+            else
+                tmpPrice = tmpPrice + addContext!.addOns[i].yearPrice
+
+        }
+        addContext!.setTotalAddOnPrice(tmpPrice);
+    }, [addContext!.addOns])
 
     useEffect(() => {
         stepContext!.setStepId(2)
