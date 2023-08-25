@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
 import './style.scss'
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Identity } from '../../utils/Info';
 import { Step } from '../../utils/StepChange';
 
@@ -41,7 +40,6 @@ const PersonalInfo = () => {
     };
 
     //For handling Button: enabled or disabled
-    const [buttonIsDisabled, setButtonIsDisabled] = useState(true);
     useEffect(() => {
         let buttonState: boolean = false;
 
@@ -93,7 +91,7 @@ const PersonalInfo = () => {
         if (context!.number.length < 12) {
             buttonState = true;
         }
-        setButtonIsDisabled(buttonState);
+        context!.setButtonDisableInfo(buttonState);
     }, [context!.name, context!.mail, context!.number])
 
 
@@ -143,14 +141,6 @@ const PersonalInfo = () => {
                             maxLength={14} />
                     </div>
                 </div>
-            </div>
-            <div className="form-link">
-                <Link to='/' className='preview-Link'>
-
-                </Link>
-                <Link to='/select-plan' className='next-Link'>
-                    <button disabled={buttonIsDisabled}>Next step</button>
-                </Link>
             </div>
         </form>
     );

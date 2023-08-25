@@ -17,3 +17,19 @@ body {
 * {
   font-family: 'Ubuntu-Regular', sans-serif;
 }
+
+@media (max-width: 375px) {
+  :root {
+    overflow: hidden;
+    height: 100svh;
+  }
+
+  body {
+    background: url('./assets/images/bg-sidebar-mobile.svg') no-repeat;
+    background-size: 105%;
+    background-color: $Light-blue;
+    overflow: hidden;
+    height: 100%;
+
+  }
+}

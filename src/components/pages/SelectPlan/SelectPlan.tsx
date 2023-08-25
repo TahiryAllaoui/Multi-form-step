@@ -4,7 +4,6 @@ import { PlanInterface, PlanContext } from '../../utils/Plan';
 import proImg from '../../../assets/images/icon-pro.svg';
 import { useContext, useEffect } from 'react';
 import { Step } from '../../utils/StepChange';
-import { Link } from 'react-router-dom';
 import './style.scss';
 
 const SelectPlan = () => {
@@ -20,19 +19,19 @@ const SelectPlan = () => {
         title: 'Arcade',
         monthPrice: 9,
         yearPrice: 90,
-        checked: false,
+        checked: false
     },
     {
         title: 'Advanced',
         monthPrice: 12,
         yearPrice: 120,
-        checked: false,
+        checked: false
     },
     {
         title: 'Pro',
         monthPrice: 15,
         yearPrice: 150,
-        checked: false,
+        checked: false
     }]
 
     const handleClick = (i: number) => {
@@ -102,14 +101,6 @@ const SelectPlan = () => {
                     </div>
                     <p>Yearly</p>
                 </div>
-            </div>
-            <div className="form-link">
-                <Link to='/' className='preview-Link'>
-                    Go back
-                </Link>
-                <Link to='/add-ons' className='next-Link'>
-                    {!planContext!.isPlanButtonDisabled ? <button>Next step</button> : <button disabled={true}>Next step</button>}
-                </Link>
             </div>
         </form>
     );

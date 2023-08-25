@@ -56,14 +56,6 @@ const Summary = () => {
                     {planContext!.monthly ? <h3>+${planContext!.totalPrice + addContext!.totalAddOnPrice}/mo</h3> : <h3>+${planContext!.totalPrice + addContext!.totalAddOnPrice}/yr</h3>}
                 </div>
             </div>
-            <div className="form-link">
-                <Link to='/add-ons' className='preview-Link'>
-                    Go back
-                </Link>
-                <Link to='/completed' className='next-Link'>
-                    <button>Next step</button>
-                </Link>
-            </div>
         </form>
     );
 };

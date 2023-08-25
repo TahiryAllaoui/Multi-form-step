@@ -7,6 +7,8 @@ interface IdentityType {
     setName: (s: string) => void;
     setMail: (s: string) => void;
     setNumber: (s: string) => void;
+    buttonDisableInfo: boolean,
+    setButtonDisableInfo: (val: boolean) => void
 }
 
 const Identity = createContext<IdentityType | null>(null);

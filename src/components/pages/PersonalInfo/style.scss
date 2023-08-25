@@ -156,3 +156,22 @@
 
     }
 }
+
+@media (max-width: 375px) {
+    .step-1 {
+        background-color: $White;
+        width: 96%;
+        height: 75%;
+
+        .form-link {
+            width: 120%;
+            margin-top: 9.4rem;
+            margin-right: -1.6rem;
+            padding: 0 0.6rem;
+            align-items: flex-end;
+            height: 50%;
+            border: 1px solid black;
+            background-color: $White;
+        }
+    }
+}

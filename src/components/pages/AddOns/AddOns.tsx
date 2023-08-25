@@ -3,7 +3,6 @@ import { AddOn, AddOnContext } from '../../utils/Addons';
 import { PlanContext } from '../../utils/Plan';
 import { useContext, useEffect } from 'react';
 import { Step } from '../../utils/StepChange';
-import { Link } from 'react-router-dom';
 import './style.scss'
 
 const AddOns = () => {
@@ -116,15 +115,6 @@ const AddOns = () => {
                         })
                     }
                 </div>
-            </div>
-            <div className="form-link">
-                <Link to='/select-plan' className='preview-Link'>
-                    Go back
-                </Link>
-                <Link to='/summary' className='next-Link'>
-                    <button>Next step</button>
-
-                </Link>
             </div>
         </form>
     );

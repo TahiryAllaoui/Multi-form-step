@@ -16,13 +16,16 @@ const Form = () => {
     const [name, setName] = useState('');
     const [mail, setMail] = useState('');
     const [number, setNumber] = useState('');
+    const [buttonDisableInfo, setButtonDisableInfo] = useState(false)
     let t: IdentityType = {
         name: name,
         mail: mail,
         number: number,
         setName: setName,
         setMail: setMail,
-        setNumber: setNumber
+        setNumber: setNumber,
+        setButtonDisableInfo: setButtonDisableInfo,
+        buttonDisableInfo: buttonDisableInfo
     }
 
     //Bill
@@ -67,21 +70,21 @@ const Form = () => {
         setTotalAddOnPrice: setTotalAddOnPrice
     }
     return (
-        <BrowserRouter>
-            <Identity.Provider value={t}>
-                <PlanContext.Provider value={planDefType}>
-                    <AddOnContext.Provider value={r}>
-                        <Routes>
-                            <Route path='/' element={<PersonalInfo />} />
-                            <Route path='/select-plan' element={<SelectPlan />} />
-                            <Route path='/add-ons' element={<AddOns />} />
-                            <Route path='/summary' element={<Summary />} />
-                            <Route path='/completed' element={<Completed />} />
-                        </Routes>
-                    </AddOnContext.Provider>
-                </PlanContext.Provider>
-            </Identity.Provider>
-        </BrowserRouter>
+        // <BrowserRouter>
+        <Identity.Provider value={t}>
+            <PlanContext.Provider value={planDefType}>
+                <AddOnContext.Provider value={r}>
+                    <Routes>
+                        <Route path='/' element={<PersonalInfo />} />
+                        <Route path='/select-plan' element={<SelectPlan />} />
+                        <Route path='/add-ons' element={<AddOns />} />
+                        <Route path='/summary' element={<Summary />} />
+                        <Route path='/completed' element={<Completed />} />
+                    </Routes>
+                </AddOnContext.Provider>
+            </PlanContext.Provider>
+        </Identity.Provider>
+        // </BrowserRouter>
     );
 };
 

@@ -3,6 +3,7 @@ import '../style/App.scss'
 import SideBar from './SideBar'
 import { Step, StepType } from './utils/StepChange';
 import { useState } from 'react';
+import Buttons from './Buttons';
 
 
 function App() {
@@ -16,10 +17,12 @@ function App() {
 
   return (
     <Step.Provider value={t}>
+      <SideBar />
       <div className='app'>
-        <SideBar />
+        <div className="placeholder" ></div>
         <Form />
       </div>
+      <Buttons />
     </Step.Provider>
   )
 }
