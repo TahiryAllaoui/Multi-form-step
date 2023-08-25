@@ -24,17 +24,17 @@
   }
 }
 
-@media (max-width: 375px) {
-  #root {
-    padding: 6rem 0.2rem 0 0.2rem;
-    display: block;
-  }
-
+@media (max-width: 416px) {
   .app {
-    width: 90%;
-    height: 80%;
     box-shadow: none;
     background: none;
+    height: unset;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 21rem;
+    top: 8rem;
+    height: auto;
 
     .placeholder {
       display: none;

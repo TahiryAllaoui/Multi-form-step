@@ -1,7 +1,7 @@
-import './style.scss'
 import { useContext, useEffect } from 'react';
-import { Identity } from '../../utils/Info';
 import { Step } from '../../utils/StepChange';
+import { Identity } from '../../utils/Info';
+import './style.scss'
 
 const PersonalInfo = () => {
     const specialChar: RegExp = /[\`1234567890=\/\*\+\{\}\~\!\@\#\$\%\|\^\&\*\(\)\=\[\]\:\'\"\;\,\?\>\<]/;

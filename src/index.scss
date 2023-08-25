@@ -18,7 +18,7 @@ body {
   font-family: 'Ubuntu-Regular', sans-serif;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 416px) {
   :root {
     overflow: hidden;
     height: 100svh;
@@ -30,6 +30,10 @@ body {
     background-color: $Light-blue;
     overflow: hidden;
     height: 100%;
-
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

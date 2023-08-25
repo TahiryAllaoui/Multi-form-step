@@ -82,7 +82,8 @@ const SelectPlan = () => {
                     {
                         [0, 1, 2].map((i) => {
                             return <div key={i} className="choice" onClick={() => handleClick(i)} style={{
-                                border: i == planContext!.currentPlanIndex ? '1px solid hsl(243, 100%, 62%)' : '1px solid hsl(229, 24%, 87%)'
+                                border: i == planContext!.currentPlanIndex ? '1px solid hsl(243, 100%, 62%)' : '1px solid hsl(229, 24%, 87%)',
+                                backgroundColor: i == planContext!.currentPlanIndex ? 'hsl(217, 100%, 97%)' : 'hsl(0,0%,100%)'
                             }}>
                                 <img src={planItems[i]} />
                                 <div>

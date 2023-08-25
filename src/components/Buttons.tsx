@@ -1,8 +1,8 @@
 import { PlanContext } from "./utils/Plan";
 import { Step } from "./utils/StepChange";
-import { Link, useNavigate, useNavigation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Identity } from "./utils/Info";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import '../style/Buttons.scss'
 
 
@@ -11,7 +11,14 @@ const Buttons = () => {
     const infoContext = useContext(Identity)
     const planContext = useContext(PlanContext);
 
-    console.log(stepContext!.stepId)
+    useEffect(() => {
+        let myButton = document.querySelector('.button-container') as HTMLDivElement;
+        if (stepContext!.stepId == undefined) {
+            myButton.style.display = 'none';
+
+        }
+        else myButton.style.display = 'block';
+    }, [stepContext!.stepId])
 
     const paths = ["/", "/select-plan", "/add-ons", "/summary", "/completed"]
 
@@ -28,7 +35,7 @@ const Buttons = () => {
                 }
                 {
                     stepContext!.stepId! <= 4 ? <Link to={paths[stepContext!.stepId! + 1]} className='next-Link'>
-                        <button>Next step</button>
+                        <button disabled={infoContext!.buttonDisableInfo!}>Next step</button>
                     </Link> : null
                 }
             </div>

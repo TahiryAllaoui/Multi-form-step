@@ -8,7 +8,7 @@ const Completed = () => {
     const stepContext = useContext(Step);
 
     useEffect(() => {
-        stepContext!.setStepId(null);
+        stepContext!.setStepId(undefined);
     }, [stepContext!.stepId])
 
     return (

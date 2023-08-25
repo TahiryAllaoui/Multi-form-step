@@ -11,7 +11,16 @@ interface IdentityType {
     setButtonDisableInfo: (val: boolean) => void
 }
 
-const Identity = createContext<IdentityType | null>(null);
+const Identity = createContext<IdentityType>({
+    name: '',
+    mail: '',
+    number: '',
+    setName: (s: string) => { },
+    setMail: (s: string) => { },
+    setNumber: (s: string) => { },
+    buttonDisableInfo: false,
+    setButtonDisableInfo: (val: boolean) => { }
+});
 
 export { Identity };
 export type { IdentityType }

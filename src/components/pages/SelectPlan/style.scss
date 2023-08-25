@@ -112,18 +112,72 @@
                     background-color: $White;
                     transition: all 200ms linear;
                 }
-
-                .switch-translate {
-                    transition: all 200ms linear;
-                    transform: translateX(15px);
-                }
             }
         }
     }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 416px) {
     .step-2 {
-        width: 96%;
+        background-color: $White;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5rem;
+        padding: 0.2rem 0 1.5rem 0;
+        align-items: center;
+        justify-content: center;
+
+        .container {
+            width: 85%;
+            padding: 0;
+            margin: 0;
+            line-height: 1rem;
+            gap: 2rem;
+
+            .step-items {
+                width: 100%;
+                gap: 10px;
+                flex-direction: column;
+
+                .choice {
+                    flex-direction: row;
+                    align-items: center;
+                    width: 100%;
+                    height: auto;
+                    gap: 1rem;
+                    padding: 0.5rem 0;
+                    margin: 0;
+
+                    img {
+                        width: 15%;
+                    }
+
+                    div {
+
+                        h3 {
+                            font-weight: bold;
+                            font-size: small;
+                        }
+
+                        p {
+                            font-size: small;
+                        }
+                    }
+                }
+            }
+
+            .bill {
+                .switch-container {
+                    height: 1.2rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+
+                    .switch {}
+
+                }
+            }
+        }
     }
+
 }

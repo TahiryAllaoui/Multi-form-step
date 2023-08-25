@@ -1,11 +1,14 @@
 import { createContext } from "react";
 
 interface StepType {
-    stepId: number | null;
-    setStepId: (n: number | null) => void;
+    stepId: number | undefined;
+    setStepId: (n: number | undefined) => void;
 }
 
-const Step = createContext<StepType | null>(null);
+const Step = createContext<StepType | undefined>({
+    stepId: 0,
+    setStepId: (n: number | undefined) => { }
+});
 
 export { Step };
 export type { StepType };

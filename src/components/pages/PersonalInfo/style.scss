@@ -115,21 +115,35 @@
 }
 
 
-@media (max-width: 375px) {
+@media (max-width: 416px) {
     .step-1 {
         background-color: $White;
-        width: 96%;
-        height: 75%;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5rem;
+        padding: 1.5rem 0;
+        align-items: center;
+        justify-content: center;
 
-        .form-link {
-            width: 120%;
-            margin-top: 9.4rem;
-            margin-right: -1.6rem;
-            padding: 0 0.6rem;
-            align-items: flex-end;
-            height: 50%;
-            border: 1px solid black;
-            background-color: $White;
+        .container {
+            width: 85%;
+            padding: 0;
+            margin: 0;
+            line-height: 1rem;
+
+            h2 {
+                padding: 0;
+                margin: 0;
+            }
+
+            .form-elements {
+                .form-item {
+                    input {
+                        border-radius: 0.3rem;
+                    }
+                }
+            }
         }
+
     }
 }
