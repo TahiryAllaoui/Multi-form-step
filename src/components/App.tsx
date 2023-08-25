@@ -7,7 +7,7 @@ import Buttons from './Buttons';
 
 
 function App() {
-  const [stepId, setStepId] = useState(0);
+  const [stepId, setStepId] = useState<number | null>(0);
   let t: StepType = {
     stepId: stepId,
     setStepId: setStepId

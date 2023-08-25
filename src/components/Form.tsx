@@ -1,6 +1,6 @@
 import { PlanContext, PlanContextType, PlanInterface } from './utils/Plan';
 import { AddOn, AddOnContextType, AddOnContext } from './utils/Addons';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import PersonalInfo from './pages/PersonalInfo/PersonalInfo';
 import SelectPlan from './pages/SelectPlan/SelectPlan';
 import { Identity, IdentityType } from './utils/Info';
@@ -70,7 +70,6 @@ const Form = () => {
         setTotalAddOnPrice: setTotalAddOnPrice
     }
     return (
-        // <BrowserRouter>
         <Identity.Provider value={t}>
             <PlanContext.Provider value={planDefType}>
                 <AddOnContext.Provider value={r}>
@@ -84,7 +83,6 @@ const Form = () => {
                 </AddOnContext.Provider>
             </PlanContext.Provider>
         </Identity.Provider>
-        // </BrowserRouter>
     );
 };
 

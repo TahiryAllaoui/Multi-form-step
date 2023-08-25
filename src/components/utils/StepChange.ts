@@ -1,8 +1,8 @@
 import { createContext } from "react";
 
 interface StepType {
-    stepId: number;
-    setStepId: (n: number) => void;
+    stepId: number | null;
+    setStepId: (n: number | null) => void;
 }
 
 const Step = createContext<StepType | null>(null);

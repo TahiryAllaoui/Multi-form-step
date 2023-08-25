@@ -5,6 +5,11 @@ import { Step } from '../../utils/StepChange';
 import './style.scss'
 
 const Completed = () => {
+    const stepContext = useContext(Step);
+
+    useEffect(() => {
+        stepContext!.setStepId(null);
+    }, [stepContext!.stepId])
 
     return (
         <div className="complet">
