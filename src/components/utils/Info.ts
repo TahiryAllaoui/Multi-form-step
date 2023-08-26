@@ -18,7 +18,7 @@ const Identity = createContext<IdentityType>({
     setName: (s: string) => { },
     setMail: (s: string) => { },
     setNumber: (s: string) => { },
-    buttonDisableInfo: false,
+    buttonDisableInfo: true,
     setButtonDisableInfo: (val: boolean) => { }
 });
 

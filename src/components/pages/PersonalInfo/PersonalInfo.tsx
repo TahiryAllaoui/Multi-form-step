@@ -92,6 +92,8 @@ const PersonalInfo = () => {
             buttonState = true;
         }
         context!.setButtonDisableInfo(buttonState);
+        console.log(context!.buttonDisableInfo)
+
     }, [context!.name, context!.mail, context!.number])
 
 

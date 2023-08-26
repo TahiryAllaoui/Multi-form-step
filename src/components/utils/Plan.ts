@@ -21,4 +21,22 @@ export interface PlanContextType {
     setTotalPrice: (val: number) => void
 }
 
-export const PlanContext = createContext<PlanContextType | null>(null);
+export const PlanContext = createContext<PlanContextType>({
+    monthly: true,
+    setMonthly: (val: boolean) => { },
+    setPlan: (a: PlanInterface) => { },
+    plan: {
+        title: '',
+        monthPrice: 0,
+        yearPrice: 0,
+        checked: false
+    },
+    isPlanButtonDisabled: true,
+    setIsPlanButtonDisabled: (val: boolean) => { },
+    planCheckedIndexes: [],
+    setPlanCheckedIndexes: (val: number[]) => { },
+    currentPlanIndex: 0,
+    setCurrentPlanIndex: (val: number) => { },
+    totalPrice: 0,
+    setTotalPrice: (val: number) => { }
+});

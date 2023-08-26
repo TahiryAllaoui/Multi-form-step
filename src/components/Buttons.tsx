@@ -2,7 +2,7 @@ import { PlanContext } from "./utils/Plan";
 import { Step } from "./utils/StepChange";
 import { Link } from "react-router-dom";
 import { Identity } from "./utils/Info";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import '../style/Buttons.scss'
 
 
@@ -10,6 +10,8 @@ const Buttons = () => {
     const stepContext = useContext(Step);
     const infoContext = useContext(Identity)
     const planContext = useContext(PlanContext);
+    const [tmp, setTmp] = useState(true);
+    const paths = ["/", "/select-plan", "/add-ons", "/summary", "/completed"]
 
     useEffect(() => {
         let myButton = document.querySelector('.button-container') as HTMLDivElement;
@@ -20,7 +22,17 @@ const Buttons = () => {
         else myButton.style.display = 'block';
     }, [stepContext!.stepId])
 
-    const paths = ["/", "/select-plan", "/add-ons", "/summary", "/completed"]
+    //buttons disability
+    useEffect(() => {
+        if (stepContext!.stepId == 0) {
+            setTmp(infoContext!.buttonDisableInfo)
+        }
+        else if (stepContext!.stepId == 1) {
+            setTmp(planContext!.isPlanButtonDisabled)
+        }
+    }, [infoContext, planContext])
+
+
 
     return (
         <div className="button-container">
@@ -35,7 +47,8 @@ const Buttons = () => {
                 }
                 {
                     stepContext!.stepId! <= 4 ? <Link to={paths[stepContext!.stepId! + 1]} className='next-Link'>
-                        <button disabled={infoContext!.buttonDisableInfo!}>Next step</button>
+                        {stepContext!.stepId! < 2 && <button disabled={tmp}>Next step</button>}
+                        {stepContext!.stepId! >= 2 && <button>Next step</button>}
                     </Link> : null
                 }
             </div>
