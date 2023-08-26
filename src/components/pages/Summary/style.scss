@@ -154,48 +154,6 @@
             }
         }
     }
-
-    .form-link {
-        margin-top: 3rem;
-        font-size: small;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-
-        .preview-Link {
-            text-decoration: none;
-            color: $Cool-gray;
-            font-family: 'Ubuntu-Bold';
-            font-weight: lighter;
-        }
-
-        .next-Link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 25%;
-            text-decoration: none;
-
-            button {
-                width: 100%;
-                height: 3rem;
-                background-color: $Marine-blue;
-                border-radius: 0.6rem;
-                border: none;
-                color: $White;
-                transition: background-color 200ms linear;
-                cursor: pointer;
-
-                &:hover {
-                    background-color: $Purplish-blue;
-                }
-            }
-
-        }
-
-    }
-
 }
 
 @media (max-width: 416px) {
@@ -232,6 +190,12 @@
                     margin-left: 0.8rem;
                 }
 
+            }
+
+            .bill {
+                p {
+                    margin: 0;
+                }
             }
         }
     }
