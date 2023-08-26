@@ -23,8 +23,8 @@ export interface PlanContextType {
 
 export const PlanContext = createContext<PlanContextType>({
     monthly: true,
-    setMonthly: (val: boolean) => { },
-    setPlan: (a: PlanInterface) => { },
+    setMonthly: (_val: boolean) => { },
+    setPlan: (_a: PlanInterface) => { },
     plan: {
         title: '',
         monthPrice: 0,
@@ -32,11 +32,11 @@ export const PlanContext = createContext<PlanContextType>({
         checked: false
     },
     isPlanButtonDisabled: true,
-    setIsPlanButtonDisabled: (val: boolean) => { },
+    setIsPlanButtonDisabled: (_val: boolean) => { },
     planCheckedIndexes: [],
-    setPlanCheckedIndexes: (val: number[]) => { },
+    setPlanCheckedIndexes: (_val: number[]) => { },
     currentPlanIndex: 0,
-    setCurrentPlanIndex: (val: number) => { },
+    setCurrentPlanIndex: (_val: number) => { },
     totalPrice: 0,
-    setTotalPrice: (val: number) => { }
+    setTotalPrice: (_val: number) => { }
 });

@@ -1,10 +1,10 @@
-import { Routes, Route } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom';
+import '../style/Form.scss';
+import AddOns from './pages/AddOns/AddOns';
+import Completed from './pages/Completed/Completed';
 import PersonalInfo from './pages/PersonalInfo/PersonalInfo';
 import SelectPlan from './pages/SelectPlan/SelectPlan';
-import Completed from './pages/Completed/Completed';
 import Summary from './pages/Summary/Summary';
-import AddOns from './pages/AddOns/AddOns';
-import '../style/Form.scss';
 
 const Form = () => {
 

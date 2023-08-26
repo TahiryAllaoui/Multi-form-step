@@ -15,11 +15,11 @@ const Identity = createContext<IdentityType>({
     name: '',
     mail: '',
     number: '',
-    setName: (s: string) => { },
-    setMail: (s: string) => { },
-    setNumber: (s: string) => { },
+    setName: (_s: string) => { },
+    setMail: (_s: string) => { },
+    setNumber: (_s: string) => { },
     buttonDisableInfo: true,
-    setButtonDisableInfo: (val: boolean) => { }
+    setButtonDisableInfo: (_val: boolean) => { }
 });
 
 export { Identity };

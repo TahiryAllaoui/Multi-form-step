@@ -16,10 +16,10 @@ export interface AddOnContextType {
 }
 
 export const AddOnContext = createContext<AddOnContextType>({
-    setAddons: (addOns: AddOn[]) => { },
+    setAddons: (_addOns: AddOn[]) => { },
     addOns: [],
     checkedIndexes: [],
-    setCheckedIndexes: (val: boolean[]) => { },
+    setCheckedIndexes: (_val: boolean[]) => { },
     totalAddOnPrice: 0,
-    setTotalAddOnPrice: (val: number) => { }
+    setTotalAddOnPrice: (_val: number) => { }
 });

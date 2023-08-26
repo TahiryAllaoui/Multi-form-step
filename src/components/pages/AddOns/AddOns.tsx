@@ -54,7 +54,7 @@ const AddOns = () => {
             e.currentTarget.classList.remove("form-item-border")
             tag.classList.remove("check-bg");
         }
-        addContext!.setAddons(addOnView.filter((current, index) => addContext!.checkedIndexes[index]));
+        addContext!.setAddons(addOnView.filter((_current, index) => addContext!.checkedIndexes[index]));
 
     }
 

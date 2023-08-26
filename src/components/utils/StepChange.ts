@@ -7,7 +7,7 @@ interface StepType {
 
 const Step = createContext<StepType | undefined>({
     stepId: 0,
-    setStepId: (n: number | undefined) => { }
+    setStepId: (_n: number | undefined) => { }
 });
 
 export { Step };
