@@ -1,9 +1,6 @@
-import { PlanContext, PlanContextType, PlanInterface } from './utils/Plan';
-import { AddOn, AddOnContextType, AddOnContext } from './utils/Addons';
 import { Routes, Route } from 'react-router-dom'
 import PersonalInfo from './pages/PersonalInfo/PersonalInfo';
 import SelectPlan from './pages/SelectPlan/SelectPlan';
-import { Identity, IdentityType } from './utils/Info';
 import Completed from './pages/Completed/Completed';
 import Summary from './pages/Summary/Summary';
 import AddOns from './pages/AddOns/AddOns';
